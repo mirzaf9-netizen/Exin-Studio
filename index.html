@@ -1,0 +1,1242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exin Studio — Design that makes complex content clear</title>
+<meta name="description" content="A long-term design partner for teams with complex, high-volume content needs. Presentations, reports, and everything in between.">
+<link rel="canonical" href="https://exinstudio.com">
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400&display=swap');
+
+:root {
+  --bg: #FFFFFF;
+  --bg-soft: #F8F7FF;
+  --bg-card: #FFFFFF;
+  --text-primary: #0D0D1A;
+  --text-secondary: #5A5870;
+  --text-muted: #9896A8;
+  --accent: #5B3CF5;
+  --accent-light: #7B5FF8;
+  --accent-dark: #3D22D4;
+  --accent-soft: rgba(91,60,245,0.08);
+  --gradient: linear-gradient(135deg, #5B3CF5 0%, #9B59F5 50%, #C084FC 100%);
+  --gradient-soft: linear-gradient(135deg, rgba(91,60,245,0.12) 0%, rgba(192,132,252,0.08) 100%);
+  --border: #EBEBF5;
+  --border-soft: #F0EFF8;
+  --font: 'Plus Jakarta Sans', system-ui, sans-serif;
+  --radius: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --shadow-sm: 0 1px 3px rgba(91,60,245,0.06), 0 4px 16px rgba(91,60,245,0.06);
+  --shadow: 0 4px 24px rgba(91,60,245,0.1), 0 1px 4px rgba(0,0,0,0.04);
+  --shadow-lg: 0 16px 60px rgba(91,60,245,0.15), 0 4px 16px rgba(0,0,0,0.06);
+  --transition: 0.25s cubic-bezier(0.4,0,0.2,1);
+}
+
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+html{scroll-behavior:smooth;font-size:16px;}
+body{font-family:var(--font);background:var(--bg);color:var(--text-primary);line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;}
+
+/* TYPOGRAPHY — improved sizing, line-height, spacing */
+h1,h2,h3,h4{font-weight:700;line-height:1.2;letter-spacing:-0.03em;}
+h1{font-size:clamp(2.8rem,5.5vw,5.2rem);line-height:1.12;}
+h2{font-size:clamp(2rem,3.5vw,3.2rem);line-height:1.18;}
+h3{font-size:clamp(1.2rem,1.8vw,1.5rem);line-height:1.3;}
+h4{font-size:1.05rem;font-weight:600;line-height:1.4;}
+p{color:var(--text-secondary);line-height:1.8;font-size:1.05rem;}
+a{color:inherit;text-decoration:none;}
+
+/* Consistent heading → paragraph spacing */
+h1+p,h2+p,h3+p,h4+p{margin-top:20px;}
+h2+p{margin-top:24px;}
+h1+p{margin-top:28px;}
+
+.container{max-width:1160px;margin:0 auto;padding:0 32px;}
+.section{padding:120px 0;}
+.section-sm{padding:80px 0;}
+
+/* BLOBS */
+.blob{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:0;}
+.blob-1{width:600px;height:600px;background:radial-gradient(circle,rgba(91,60,245,0.18) 0%,transparent 70%);top:-200px;right:-100px;}
+.blob-2{width:400px;height:400px;background:radial-gradient(circle,rgba(192,132,252,0.15) 0%,transparent 70%);bottom:-100px;left:-100px;}
+
+/* LABEL */
+.label{display:inline-flex;align-items:center;gap:8px;font-size:0.76rem;font-weight:700;letter-spacing:0.14em;text-transform:uppercase;color:var(--accent);margin-bottom:20px;background:var(--accent-soft);padding:6px 14px;border-radius:100px;}
+
+/* BUTTONS */
+.btn{display:inline-flex;align-items:center;gap:8px;padding:14px 28px;border-radius:100px;font-family:var(--font);font-size:0.95rem;font-weight:600;cursor:pointer;border:none;transition:var(--transition);letter-spacing:-0.01em;}
+.btn-primary{background:var(--gradient);color:white;box-shadow:0 4px 20px rgba(91,60,245,0.35);}
+.btn-primary:hover{transform:translateY(-2px);box-shadow:0 8px 32px rgba(91,60,245,0.45);}
+.btn-secondary{background:transparent;color:var(--text-primary);border:1.5px solid var(--border);background:white;}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px);}
+.btn svg{width:16px;height:16px;transition:transform 0.2s;}
+.btn:hover svg{transform:translateX(3px);}
+.btn-lg{padding:18px 36px;font-size:1rem;}
+.btn-white{background:white;color:var(--accent);font-weight:700;}
+.btn-white:hover{background:rgba(255,255,255,0.92);transform:translateY(-2px);}
+.btn-ghost{background:rgba(255,255,255,0.12);color:white;border:1.5px solid rgba(255,255,255,0.3);}
+.btn-ghost:hover{background:rgba(255,255,255,0.2);transform:translateY(-2px);}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--transition);}
+nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 0;}
+.nav-inner{display:flex;align-items:center;justify-content:space-between;}
+.nav-logo{font-size:1.25rem;font-weight:800;letter-spacing:-0.04em;color:var(--text-primary);}
+.nav-logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.nav-links{display:flex;align-items:center;gap:32px;list-style:none;}
+.nav-links a{font-size:1.05rem;font-weight:500;color:var(--text-secondary);transition:color 0.2s;}
+.nav-links a:hover{color:var(--text-primary);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;}
+.hamburger span{display:block;width:22px;height:1.5px;background:var(--text-primary);transition:var(--transition);}
+
+/* HERO */
+.hero{min-height:100vh;display:flex;align-items:center;padding:140px 0 100px;position:relative;overflow:hidden;}
+.hero-inner{text-align:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:white;border:1.5px solid var(--border);border-radius:100px;padding:8px 18px;margin-bottom:36px;box-shadow:var(--shadow-sm);}
+.hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:pulse 2s infinite;}
+.hero-badge span{font-size:0.82rem;font-weight:600;color:var(--text-secondary);}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1);}50%{opacity:0.6;transform:scale(1.3);}}
+.hero h1{margin-bottom:28px;max-width:680px;margin-left:auto;margin-right:auto;white-space:normal;}
+@media(max-width:900px){.hero h1{font-size:2.4rem;}}
+.hero h1 .grad,.grad{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.hero-sub{font-size:1.2rem;max-width:580px;margin:0 auto 52px;color:var(--text-secondary);line-height:1.75;}
+.hero-actions{display:flex;align-items:center;justify-content:center;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
+.hero-trust{display:flex;align-items:center;justify-content:center;gap:28px;flex-wrap:wrap;margin-bottom:64px;}
+.hero-trust-item{display:flex;align-items:center;gap:8px;font-size:0.875rem;font-weight:600;color:var(--text-muted);}
+.hero-trust-icon{color:var(--accent);}
+
+/* HERO CAROUSEL (work showcase) */
+.hero-showcase{position:relative;max-width:960px;margin:0 auto;overflow:hidden;border-radius:var(--radius-xl);box-shadow:var(--shadow-lg);border:1.5px solid var(--border);}
+.hero-showcase-toolbar{background:var(--bg-soft);border-bottom:1px solid var(--border);padding:14px 20px;display:flex;align-items:center;gap:12px;}
+.hero-showcase-dots-mac{display:flex;gap:6px;}
+.hero-showcase-dots-mac span{width:10px;height:10px;border-radius:50%;}
+.hero-showcase-dots-mac span:nth-child(1){background:#FF5F57;}
+.hero-showcase-dots-mac span:nth-child(2){background:#FEBC2E;}
+.hero-showcase-dots-mac span:nth-child(3){background:#28C840;}
+.hero-showcase-tabs{display:flex;gap:2px;margin-left:16px;flex:1;overflow:hidden;}
+.hstab{font-size:0.75rem;font-weight:600;padding:5px 14px;border-radius:6px;cursor:pointer;color:var(--text-muted);transition:all 0.2s;white-space:nowrap;border:1px solid transparent;}
+.hstab.active{background:white;color:var(--accent);border-color:var(--border);box-shadow:var(--shadow-sm);}
+.hero-showcase-track-wrap{overflow:hidden;}
+.hero-showcase-track{display:flex;transition:transform 0.6s cubic-bezier(0.4,0,0.2,1);}
+.hero-showcase-slide{min-width:100%;background:white;}
+.hss-content{padding:40px 48px;display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:center;min-height:360px;}
+.hss-left{}
+.hss-category{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--accent);margin-bottom:12px;}
+.hss-title{font-size:1.8rem;font-weight:800;letter-spacing:-0.04em;line-height:1.2;margin-bottom:16px;}
+.hss-desc{font-size:0.95rem;color:var(--text-secondary);line-height:1.75;margin-bottom:24px;}
+.hss-tags{display:flex;gap:8px;flex-wrap:wrap;}
+.hss-tag{font-size:0.72rem;padding:4px 12px;border-radius:100px;background:var(--accent-soft);color:var(--accent);font-weight:600;border:1px solid rgba(91,60,245,0.15);}
+.hss-right{display:flex;flex-direction:column;gap:12px;}
+.hss-card{background:var(--bg-soft);border:1.5px solid var(--border);border-radius:14px;padding:18px 20px;transition:var(--transition);}
+.hss-card:hover{border-color:var(--accent);box-shadow:var(--shadow-sm);}
+.hss-card-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:12px;}
+.hss-card-title{font-size:0.82rem;font-weight:700;color:var(--text-primary);}
+.hss-card-badge{font-size:0.65rem;padding:3px 9px;border-radius:100px;font-weight:700;}
+.badge-done{background:rgba(34,197,94,0.1);color:#16A34A;}
+.badge-live{background:rgba(91,60,245,0.1);color:var(--accent);}
+.hss-bars{display:flex;flex-direction:column;gap:6px;}
+.hss-bar{height:6px;border-radius:3px;background:var(--border);}
+.hss-bar.grad{background:var(--gradient);}
+.hss-bar.w95{width:95%;}.hss-bar.w75{width:75%;}.hss-bar.w55{width:55%;}
+.hss-bar.w85{width:85%;}.hss-bar.w65{width:65%;}.hss-bar.w45{width:45%;}
+.hss-bar.w80{width:80%;}.hss-bar.w60{width:60%;}.hss-bar.w40{width:40%;}
+.hss-nav{display:flex;align-items:center;justify-content:space-between;padding:16px 24px;background:var(--bg-soft);border-top:1px solid var(--border);}
+.hss-progress{display:flex;gap:6px;}
+.hss-dot{width:6px;height:6px;border-radius:50%;background:var(--border);cursor:pointer;transition:all 0.3s;border:none;padding:0;}
+.hss-dot.active{width:20px;border-radius:3px;background:var(--gradient);}
+.hss-arrows{display:flex;gap:8px;}
+.hss-arrow{width:32px;height:32px;border-radius:50%;background:white;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);color:var(--text-secondary);}
+.hss-arrow:hover{border-color:var(--accent);color:var(--accent);}
+.hss-counter{font-size:0.78rem;font-weight:600;color:var(--text-muted);}
+@media(max-width:768px){.hss-content{grid-template-columns:1fr;min-height:auto;padding:28px 24px;}.hero-showcase-tabs{display:none;}.hss-right{display:none;}}
+
+/* STATS */
+.stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+.stats-inner{display:grid;grid-template-columns:repeat(6,1fr);}
+.stat-item{padding:40px 20px;text-align:center;border-right:1px solid var(--border);transition:var(--transition);}
+.stat-item:last-child{border-right:none;}
+.stat-item:hover{background:var(--accent-soft);}
+.stat-num{font-size:2.2rem;font-weight:800;letter-spacing:-0.04em;background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;line-height:1;margin-bottom:10px;}
+.stat-label{font-size:0.82rem;color:var(--text-muted);font-weight:500;line-height:1.5;}
+
+/* STRIP */
+.strip{padding:48px 0;overflow:hidden;border-bottom:1px solid var(--border);}
+.strip-track{display:flex;gap:12px;animation:scroll-x 28s linear infinite;width:max-content;}
+.strip-track:hover{animation-play-state:paused;}
+@keyframes scroll-x{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
+.strip-pill{background:white;border:1.5px solid var(--border);border-radius:100px;padding:11px 22px;display:flex;align-items:center;gap:8px;white-space:nowrap;flex-shrink:0;box-shadow:var(--shadow-sm);}
+.strip-pill-icon{width:8px;height:8px;border-radius:50%;background:var(--gradient);}
+.strip-pill span{font-size:0.875rem;font-weight:600;color:var(--text-secondary);}
+
+/* TRUSTED */
+.trusted-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.trusted-left h2{margin-bottom:20px;}
+.trusted-left p{margin-bottom:40px;font-size:1.05rem;}
+.client-cards{display:flex;flex-direction:column;gap:12px;}
+.client-card{background:white;border:1.5px solid var(--border);border-radius:var(--radius);padding:20px 24px;display:flex;justify-content:space-between;align-items:center;transition:var(--transition);box-shadow:var(--shadow-sm);}
+.client-card:hover{border-color:var(--accent);box-shadow:var(--shadow);}
+.client-card-left strong{display:block;font-size:0.95rem;font-weight:600;margin-bottom:4px;}
+.client-card-left span{font-size:0.82rem;color:var(--text-muted);}
+.client-card-tag{font-size:0.72rem;padding:5px 13px;border-radius:100px;background:var(--accent-soft);color:var(--accent);font-weight:700;white-space:nowrap;}
+.trusted-right{background:var(--gradient);border-radius:var(--radius-xl);padding:52px;}
+.trusted-right h3{color:white;margin-bottom:40px;font-size:1.7rem;line-height:1.25;}
+.stat-row{padding:28px 0;border-bottom:1px solid rgba(255,255,255,0.15);}
+.stat-row:last-child{border-bottom:none;padding-bottom:0;}
+.stat-row-num{font-size:1.25rem;font-weight:800;color:white;letter-spacing:-0.02em;line-height:1.3;margin-bottom:10px;}
+.stat-row-label{font-size:0.92rem;color:rgba(255,255,255,0.7);line-height:1.7;}
+
+/* PAIN */
+.pain-section{background:var(--text-primary);position:relative;overflow:hidden;}
+.pain-blob{position:absolute;width:500px;height:500px;background:radial-gradient(circle,rgba(91,60,245,0.3) 0%,transparent 70%);top:-100px;right:-100px;pointer-events:none;}
+.pain-section .label{color:rgba(255,255,255,0.5);background:rgba(255,255,255,0.08);}
+.pain-section h2{color:white;margin-bottom:60px;}
+.pain-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-bottom:60px;}
+.pain-card{background:#141428;padding:52px 40px;transition:var(--transition);}
+.pain-card:first-child{border-radius:var(--radius-lg) 0 0 var(--radius-lg);}
+.pain-card:last-child{border-radius:0 var(--radius-lg) var(--radius-lg) 0;}
+.pain-card:hover{background:#1A1A35;}
+.pain-card-icon{width:56px;height:56px;border-radius:14px;background:rgba(91,60,245,0.15);border:1px solid rgba(91,60,245,0.25);display:flex;align-items:center;justify-content:center;margin-bottom:28px;}
+.pain-card h3{color:white;font-size:1.3rem;margin-bottom:16px;line-height:1.3;}
+.pain-card p{color:rgba(255,255,255,0.5);font-size:0.975rem;line-height:1.75;}
+.pain-cta{background:var(--gradient);border-radius:var(--radius-xl);padding:80px;text-align:center;position:relative;overflow:hidden;}
+.pain-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 70% 50%,rgba(255,255,255,0.1) 0%,transparent 60%);pointer-events:none;}
+.pain-cta h2{color:white;margin-bottom:20px;position:relative;}
+.pain-cta p{color:rgba(255,255,255,0.8);margin-bottom:44px;font-size:1.1rem;max-width:520px;margin-left:auto;margin-right:auto;position:relative;line-height:1.75;}
+.pain-cta-actions{display:flex;justify-content:center;gap:16px;position:relative;flex-wrap:wrap;}
+
+/* HOW */
+.how-wrap{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.how-left h2{margin-bottom:20px;}
+.how-left>p{margin-bottom:48px;font-size:1.05rem;}
+.steps{}
+.step{display:flex;gap:28px;padding:36px 0;border-bottom:1px solid var(--border);transition:var(--transition);}
+.step:first-child{padding-top:0;}
+.step:last-child{border-bottom:none;}
+.step:hover .step-num{color:var(--accent);}
+.step-num{font-size:2.5rem;font-weight:800;letter-spacing:-0.05em;color:var(--border);line-height:1;flex-shrink:0;width:44px;transition:color 0.3s;}
+.step h4{margin-bottom:10px;font-size:1rem;font-weight:700;}
+.step p{font-size:0.975rem;line-height:1.75;}
+.how-visual{background:white;border:1.5px solid var(--border);border-radius:var(--radius-xl);padding:36px;box-shadow:var(--shadow);position:sticky;top:120px;}
+.how-visual-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:24px;}
+.mock-task{background:var(--bg-soft);border:1.5px solid var(--border);border-radius:var(--radius);padding:20px;margin-bottom:14px;}
+.mock-task-head{display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;}
+.mock-task-name{font-size:0.9rem;font-weight:700;}
+.mock-task-badge{font-size:0.68rem;padding:4px 11px;border-radius:100px;font-weight:700;}
+.mock-task-badge.active{background:rgba(34,197,94,0.12);color:#16A34A;}
+.mock-task-badge.review{background:rgba(249,115,22,0.12);color:#EA580C;}
+.mock-bars{display:flex;flex-direction:column;gap:8px;}
+.mock-bar{height:7px;border-radius:4px;background:var(--border);}
+.mock-bar.grad{background:var(--gradient);}
+.mock-bar.w90{width:90%;}.mock-bar.w70{width:70%;}.mock-bar.w50{width:50%;}
+.mock-bar.w80{width:80%;}.mock-bar.w60{width:60%;}.mock-bar.w40{width:40%;}
+.delivery-pill{display:flex;align-items:center;gap:10px;background:var(--text-primary);border-radius:var(--radius);padding:16px 20px;margin-top:8px;}
+.delivery-dot{width:8px;height:8px;border-radius:50%;background:#22C55E;flex-shrink:0;animation:pulse 2s infinite;}
+.delivery-pill p{font-size:0.875rem;color:rgba(255,255,255,0.7);margin:0;line-height:1.4;}
+.delivery-pill strong{color:white;}
+
+/* SERVICES */
+.services-header{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:end;margin-bottom:48px;}
+.services-header p{font-size:1.05rem;}
+.tabs{display:flex;gap:8px;margin-bottom:36px;}
+.tab-btn{padding:11px 26px;border-radius:100px;border:1.5px solid var(--border);background:white;font-family:var(--font);font-size:0.9rem;font-weight:600;cursor:pointer;transition:var(--transition);color:var(--text-secondary);}
+.tab-btn.active{background:var(--gradient);color:white;border-color:transparent;box-shadow:0 4px 16px rgba(91,60,245,0.3);}
+.tab-btn:hover:not(.active){border-color:var(--accent);color:var(--accent);}
+.tab-content{display:none;}
+.tab-content.active{display:grid;grid-template-columns:repeat(2,1fr);gap:20px;}
+.svc-card{background:white;border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:40px;transition:var(--transition);box-shadow:var(--shadow-sm);}
+.svc-card:hover{border-color:var(--accent);box-shadow:var(--shadow);transform:translateY(-3px);}
+.svc-icon{font-size:1.8rem;margin-bottom:20px;}
+.svc-card h3{font-size:1.05rem;font-weight:700;margin-bottom:12px;}
+.svc-card p{font-size:0.95rem;margin-bottom:20px;line-height:1.75;}
+.svc-tags{display:flex;flex-wrap:wrap;gap:6px;}
+.svc-tag{font-size:0.72rem;padding:5px 11px;border-radius:100px;background:var(--bg-soft);border:1px solid var(--border);color:var(--text-muted);font-weight:500;}
+
+/* BENEFITS */
+.benefits-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:2px;margin-top:60px;border-radius:var(--radius-xl);overflow:hidden;}
+.benefit-card{background:white;padding:44px 36px;border:1px solid var(--border);transition:var(--transition);}
+.benefit-card:hover{background:var(--gradient);border-color:transparent;}
+.benefit-card:hover h3,.benefit-card:hover p{color:white;}
+.benefit-card:hover .benefit-icon{background:rgba(255,255,255,0.15);border-color:rgba(255,255,255,0.2);}
+.benefit-icon{width:52px;height:52px;border-radius:14px;background:var(--accent-soft);border:1px solid rgba(91,60,245,0.15);display:flex;align-items:center;justify-content:center;font-size:1.3rem;margin-bottom:24px;transition:var(--transition);}
+.benefit-card h3{font-size:1rem;font-weight:700;margin-bottom:12px;transition:color 0.25s;line-height:1.4;}
+.benefit-card p{font-size:0.95rem;line-height:1.75;transition:color 0.25s;}
+
+/* TESTIMONIAL CAROUSEL — peek design with fade overlays */
+.tcarousel-outer{position:relative;overflow:hidden;padding:8px 0 48px;}
+.tcarousel-viewport{overflow:hidden;position:relative;}
+.tcarousel-track{display:flex;transition:transform 0.65s cubic-bezier(0.4,0,0.2,1);will-change:transform;}
+.tcarousel-slide{min-width:50%;padding:0 16px;transition:opacity 0.4s,transform 0.4s;opacity:0.38;transform:scale(0.96);}
+.tcarousel-slide.active{opacity:1;transform:scale(1);}
+.tcarousel-card{background:white;border:1.5px solid var(--border);border-radius:var(--radius-xl);padding:52px 56px;box-shadow:var(--shadow);position:relative;overflow:hidden;height:100%;}
+.tcarousel-card::before{content:'';position:absolute;top:0;left:0;right:0;height:4px;background:var(--gradient);}
+/* Left and right fade overlays */
+.tcarousel-fade-left,.tcarousel-fade-right{position:absolute;top:0;bottom:0;width:160px;z-index:2;pointer-events:none;}
+.tcarousel-fade-left{left:0;background:linear-gradient(to right,var(--bg-soft) 0%,transparent 100%);}
+.tcarousel-fade-right{right:0;background:linear-gradient(to left,var(--bg-soft) 0%,transparent 100%);}
+.testimonial-stars{font-size:1.1rem;color:#F59E0B;margin-bottom:28px;letter-spacing:2px;}
+.tcarousel-quote{font-size:clamp(1.05rem,1.8vw,1.3rem);font-weight:500;line-height:1.75;color:var(--text-primary);margin-bottom:40px;letter-spacing:-0.01em;}
+.tcarousel-author{display:flex;align-items:center;gap:18px;}
+.tcarousel-avatar{width:52px;height:52px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:800;color:white;font-size:1.2rem;flex-shrink:0;}
+.tcarousel-name{font-weight:700;font-size:0.95rem;color:var(--text-primary);margin-bottom:3px;}
+.tcarousel-role{color:var(--text-muted);font-size:0.85rem;}
+.tcarousel-badge{display:inline-block;margin-top:8px;font-size:0.72rem;padding:4px 12px;border-radius:100px;background:var(--accent-soft);color:var(--accent);font-weight:700;}
+.tcarousel-controls{display:flex;align-items:center;justify-content:center;gap:20px;margin-top:32px;}
+.tcarousel-dots{display:flex;gap:8px;}
+.tdot{width:8px;height:8px;border-radius:50%;border:none;background:var(--border);cursor:pointer;transition:all 0.3s;padding:0;}
+.tdot.active{width:28px;border-radius:4px;background:var(--gradient);}
+.tarrow{width:44px;height:44px;border-radius:50%;background:white;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;cursor:pointer;transition:var(--transition);color:var(--text-secondary);box-shadow:var(--shadow-sm);}
+.tarrow:hover{border-color:var(--accent);color:var(--accent);box-shadow:var(--shadow);}
+@media(max-width:768px){.tcarousel-slide{min-width:78%;}.tcarousel-fade-left,.tcarousel-fade-right{width:60px;}.tcarousel-card{padding:36px 28px;}}
+
+/* COMPARISON */
+.comparison-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:60px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);}
+.comparison-table th{padding:22px 28px;text-align:left;font-size:0.9rem;font-weight:700;background:var(--bg-soft);border-bottom:2px solid var(--border);}
+.comparison-table th.hl{background:var(--gradient);color:white;}
+.comparison-table td{padding:18px 28px;font-size:0.92rem;border-bottom:1px solid var(--border);color:var(--text-secondary);background:white;}
+.comparison-table td.hl{background:rgba(91,60,245,0.04);font-weight:600;color:var(--text-primary);}
+.comparison-table tr:last-child td{border-bottom:none;}
+.chk{color:var(--accent);font-weight:700;}
+.crs{color:var(--text-muted);}
+
+/* FAQ */
+.faq-list{margin-top:60px;max-width:800px;}
+.faq-item{border-bottom:1px solid var(--border);}
+.faq-q{display:flex;justify-content:space-between;align-items:center;padding:24px 0;cursor:pointer;font-weight:600;font-size:0.975rem;transition:color 0.2s;gap:16px;line-height:1.5;}
+.faq-q:hover{color:var(--accent);}
+.faq-icon{width:30px;height:30px;border-radius:50%;border:1.5px solid var(--border);display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:1rem;transition:var(--transition);color:var(--text-secondary);}
+.faq-item.open .faq-icon{background:var(--gradient);border-color:transparent;color:white;transform:rotate(45deg);}
+.faq-a{display:none;padding-bottom:24px;}
+.faq-a p{font-size:0.975rem;line-height:1.8;}
+.faq-item.open .faq-a{display:block;}
+
+/* FOOTER CTA */
+.footer-cta{background:var(--gradient);padding:128px 0;text-align:center;position:relative;overflow:hidden;}
+.footer-cta::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 50%,rgba(255,255,255,0.12) 0%,transparent 50%),radial-gradient(circle at 70% 50%,rgba(0,0,0,0.1) 0%,transparent 50%);pointer-events:none;}
+.footer-cta h2{color:white;margin-bottom:20px;position:relative;}
+.footer-cta p{color:rgba(255,255,255,0.8);margin-bottom:52px;font-size:1.1rem;max-width:540px;margin-left:auto;margin-right:auto;position:relative;line-height:1.75;}
+.footer-cta-btns{display:flex;justify-content:center;gap:16px;flex-wrap:wrap;position:relative;}
+
+/* FOOTER */
+footer{background:#07071A;padding:80px 0 40px;}
+.footer-grid{display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:60px;margin-bottom:60px;}
+.footer-logo{font-size:1.25rem;font-weight:800;letter-spacing:-0.04em;color:white;display:block;margin-bottom:18px;}
+.footer-logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.footer-brand p{color:rgba(255,255,255,0.4);font-size:0.9rem;max-width:260px;line-height:1.7;}
+.footer-col h5{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.14em;color:rgba(255,255,255,0.3);margin-bottom:20px;}
+.footer-col ul{list-style:none;display:flex;flex-direction:column;gap:13px;}
+.footer-col ul a{color:rgba(255,255,255,0.55);font-size:0.9rem;transition:color 0.2s;}
+.footer-col ul a:hover{color:white;}
+.footer-bottom{padding-top:40px;border-top:1px solid rgba(255,255,255,0.06);display:flex;justify-content:space-between;align-items:center;}
+.footer-bottom p{color:rgba(255,255,255,0.25);font-size:0.82rem;}
+.footer-email{color:rgba(255,255,255,0.4);font-size:0.9rem;transition:color 0.2s;}
+.footer-email:hover{color:white;}
+
+/* WORK PAGE */
+.page-hero{padding:180px 0 80px;position:relative;overflow:hidden;}
+.page-hero p{font-size:1.1rem;}
+.work-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:24px;margin-top:60px;}
+.work-card{background:white;border:1.5px solid var(--border);border-radius:var(--radius-xl);overflow:hidden;transition:var(--transition);box-shadow:var(--shadow-sm);}
+.work-card:hover{box-shadow:var(--shadow-lg);transform:translateY(-4px);border-color:var(--accent);}
+.work-visual{aspect-ratio:16/10;display:flex;align-items:center;justify-content:center;padding:32px;}
+.work-info{padding:32px 36px;}
+.work-tags{display:flex;gap:8px;margin-bottom:14px;}
+.work-tag{font-size:0.72rem;padding:5px 12px;border-radius:100px;font-weight:700;}
+.work-tag.primary{background:var(--accent-soft);color:var(--accent);}
+.work-tag.secondary{background:var(--bg-soft);color:var(--text-muted);border:1px solid var(--border);}
+.work-card h3{font-size:1.1rem;font-weight:700;margin-bottom:10px;line-height:1.4;}
+.work-card p{font-size:0.95rem;margin-bottom:22px;line-height:1.75;}
+.work-stats{display:flex;gap:28px;padding-top:18px;border-top:1px solid var(--border);}
+.work-stat strong{display:block;font-size:0.95rem;font-weight:700;}
+.work-stat span{font-size:0.78rem;color:var(--text-muted);}
+
+/* SERVICES FULL */
+.svcs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:44px;}
+.process-block{background:var(--gradient);border-radius:var(--radius-xl);padding:80px;margin-top:80px;position:relative;overflow:hidden;}
+.process-block::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 80% 20%,rgba(255,255,255,0.1) 0%,transparent 50%);pointer-events:none;}
+.process-block h2{color:white;margin-bottom:60px;position:relative;}
+.process-block .label{color:rgba(255,255,255,0.6);background:rgba(255,255,255,0.12);position:relative;}
+.process-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:40px;position:relative;}
+.proc-step{text-align:center;}
+.proc-num{font-size:3rem;font-weight:800;color:rgba(255,255,255,0.15);letter-spacing:-0.05em;line-height:1;margin-bottom:18px;}
+.proc-step h4{color:white;font-weight:700;margin-bottom:12px;font-size:1rem;}
+.proc-step p{color:rgba(255,255,255,0.6);font-size:0.9rem;line-height:1.7;}
+
+/* ABOUT */
+.about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:start;}
+.about-sticky{position:sticky;top:120px;}
+.about-card{background:var(--gradient);border-radius:var(--radius-xl);padding:52px;color:white;}
+.about-card h3{color:white;margin-bottom:36px;font-size:1.6rem;line-height:1.3;}
+.about-stat-r{display:flex;justify-content:space-between;align-items:center;padding:22px 0;border-bottom:1px solid rgba(255,255,255,0.15);}
+.about-stat-r:last-child{border-bottom:none;padding-bottom:0;}
+.about-stat-num{font-size:2.2rem;font-weight:800;color:white;letter-spacing:-0.04em;}
+.about-stat-lbl{font-size:0.85rem;color:rgba(255,255,255,0.65);text-align:right;}
+.about-content h2{margin-bottom:24px;}
+.about-content p{margin-bottom:22px;font-size:1.05rem;line-height:1.8;}
+.exp-item{display:flex;justify-content:space-between;align-items:center;padding:17px 22px;background:white;border-radius:var(--radius);border:1.5px solid var(--border);box-shadow:var(--shadow-sm);margin-bottom:12px;}
+.exp-name{font-weight:600;font-size:0.9rem;}
+.exp-bar-wrap{width:140px;height:5px;background:var(--bg-soft);border-radius:3px;overflow:hidden;}
+.exp-bar{height:100%;background:var(--gradient);border-radius:3px;}
+
+/* CONTACT */
+.contact-grid{display:grid;grid-template-columns:1fr 1.2fr;gap:60px;margin-top:60px;}
+.contact-info h3{font-size:1.3rem;font-weight:700;margin-bottom:16px;line-height:1.4;}
+.contact-info p{margin-bottom:32px;font-size:1.05rem;}
+.contact-detail{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.contact-icon{width:38px;height:38px;border-radius:10px;background:var(--accent-soft);border:1px solid rgba(91,60,245,0.15);display:flex;align-items:center;justify-content:center;font-size:0.95rem;flex-shrink:0;}
+.contact-detail a,.contact-detail span{font-size:0.9rem;color:var(--text-secondary);}
+.contact-detail a:hover{color:var(--accent);}
+.expect-card{background:var(--bg-soft);border:1.5px solid var(--border);border-radius:var(--radius-lg);padding:30px;margin-top:36px;}
+.expect-label{font-size:0.72rem;font-weight:700;text-transform:uppercase;letter-spacing:0.12em;color:var(--text-muted);margin-bottom:20px;}
+.expect-item{display:flex;gap:13px;align-items:flex-start;margin-bottom:16px;}
+.expect-num{width:23px;height:23px;border-radius:50%;background:var(--gradient);display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;}
+.expect-num span{color:white;font-size:0.65rem;font-weight:800;}
+.expect-item p{font-size:0.9rem;margin:0;line-height:1.6;}
+.contact-form-card{background:white;border:1.5px solid var(--border);border-radius:var(--radius-xl);padding:52px;box-shadow:var(--shadow);}
+.form-title{font-size:1.5rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:36px;}
+.form-group{margin-bottom:22px;}
+.form-group label{display:block;font-size:0.75rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;margin-bottom:8px;color:var(--text-secondary);}
+.form-group input,.form-group textarea,.form-group select{width:100%;padding:14px 17px;border:1.5px solid var(--border);border-radius:var(--radius);font-family:var(--font);font-size:0.95rem;background:var(--bg-soft);color:var(--text-primary);transition:border-color 0.2s;outline:none;}
+.form-group input:focus,.form-group textarea:focus,.form-group select:focus{border-color:var(--accent);background:white;}
+.form-group textarea{height:120px;resize:vertical;}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;}
+
+/* PAGE SYSTEM */
+.page{display:none;}
+.page.active{display:block;}
+
+/* FADE UP */
+.fade-up{opacity:0;transform:translateY(28px);transition:opacity 0.6s ease,transform 0.6s ease;}
+.fade-up.visible{opacity:1;transform:translateY(0);}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .stats-inner{grid-template-columns:repeat(3,1fr);}
+  .stat-item:nth-child(3){border-right:none;}
+  .trusted-wrap{grid-template-columns:1fr;}
+  .how-wrap{grid-template-columns:1fr;}
+  .how-visual{position:static;}
+  .services-header{grid-template-columns:1fr;gap:24px;}
+  .tab-content.active{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr 1fr;gap:40px;}
+  .work-grid{grid-template-columns:1fr;}
+  .svcs-grid{grid-template-columns:repeat(2,1fr);}
+  .about-grid{grid-template-columns:1fr;}
+  .about-sticky{position:static;}
+  .contact-grid{grid-template-columns:1fr;}
+  .process-steps{grid-template-columns:repeat(2,1fr);}
+  .process-block{padding:52px 36px;}
+  .hss-content{grid-template-columns:1fr;padding:32px 28px;}
+  .hss-right{display:none;}
+}
+@media(max-width:768px){
+  .container{padding:0 20px;}
+  .section{padding:80px 0;}
+  .stats-inner{grid-template-columns:repeat(2,1fr);}
+  .stat-item:nth-child(2){border-right:none;}
+  .stat-item:nth-child(3){border-right:1px solid var(--border);}
+  .stat-item:nth-child(4){border-right:none;}
+  .pain-grid{grid-template-columns:1fr;}
+  .pain-card:first-child{border-radius:var(--radius-lg) var(--radius-lg) 0 0;}
+  .pain-card:last-child{border-radius:0 0 var(--radius-lg) var(--radius-lg);}
+  .benefits-grid{grid-template-columns:1fr;}
+  .footer-grid{grid-template-columns:1fr;}
+  .svcs-grid{grid-template-columns:1fr;}
+  .nav-links{display:none;}
+  .hamburger{display:flex;}
+  .pain-cta{padding:44px 28px;}
+  .form-row{grid-template-columns:1fr;}
+  .tcarousel-slide{padding:0 8px;}
+  .tcarousel-card{padding:36px 28px;}
+  .hero h1{white-space:normal;font-size:2.4rem;}
+}
+
+</style>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0' y1='0' x2='1' y2='1'><stop offset='0%25' stop-color='%235B3CF5'/><stop offset='100%25' stop-color='%23C084FC'/></linearGradient></defs><rect width='100' height='100' rx='20' fill='url(%23g)'/><text y='72' x='50' text-anchor='middle' font-size='58' font-family='sans-serif' font-weight='800' fill='white'>E</text></svg>">
+</head>
+<body>
+
+<nav id="nav">
+  <div class="container">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo" onclick="showPage('home')">Exin<span>Studio</span></a>
+      <ul class="nav-links">
+        <li><a href="#" onclick="showPage('home')">Home</a></li>
+        <li><a href="#" onclick="showPage('work')">Work</a></li>
+        <li><a href="#" onclick="showPage('services')">Services</a></li>
+        <li><a href="#" onclick="showPage('about')">About</a></li>
+      </ul>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <a href="#" class="btn btn-primary" onclick="showPage('contact')">Get in touch <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <div class="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<div id="mob-menu" style="display:none;position:fixed;inset:0;background:white;z-index:99;padding:100px 32px 40px;flex-direction:column;gap:28px;">
+  <a href="#" style="font-size:2rem;font-weight:800;letter-spacing:-0.04em;" onclick="showPage('home');toggleMenu()">Home</a>
+  <a href="#" style="font-size:2rem;font-weight:800;letter-spacing:-0.04em;" onclick="showPage('work');toggleMenu()">Work</a>
+  <a href="#" style="font-size:2rem;font-weight:800;letter-spacing:-0.04em;" onclick="showPage('services');toggleMenu()">Services</a>
+  <a href="#" style="font-size:2rem;font-weight:800;letter-spacing:-0.04em;" onclick="showPage('about');toggleMenu()">About</a>
+  <a href="#" class="btn btn-primary" style="margin-top:16px;width:fit-content;" onclick="showPage('contact');toggleMenu()">Get in touch</a>
+</div>
+
+<!-- ========== HOME ========== -->
+<div id="page-home" class="page active">
+
+<section class="hero">
+  <div class="blob blob-1"></div>
+  <div class="blob blob-2"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div class="hero-badge">
+        <div class="hero-badge-dot"></div>
+        <span>Presentation &amp; Editorial Design Studio</span>
+      </div>
+      <h1>Design that makes <span class="grad">complex content</span> clear.</h1>
+      <p class="hero-sub">A long-term design partner for teams with complex, high-volume content needs. Presentations, reports, and everything in between.</p>
+      <div class="hero-actions">
+        <a href="#" class="btn btn-primary btn-lg" onclick="showPage('work')">See our work <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#" class="btn btn-secondary btn-lg" onclick="showPage('contact')">Get in touch</a>
+      </div>
+      <div class="hero-trust">
+        <div class="hero-trust-item"><span class="hero-trust-icon">&#10003;</span> 10,000+ slides delivered</div>
+        <div class="hero-trust-item"><span class="hero-trust-icon">&#10003;</span> 24hr turnaround</div>
+        <div class="hero-trust-item"><span class="hero-trust-icon">&#10003;</span> 3+ year partnerships</div>
+        <div class="hero-trust-item"><span class="hero-trust-icon">&#10003;</span> Unlimited revisions</div>
+      </div>
+
+      <!-- WORK SHOWCASE CAROUSEL -->
+      <div class="hero-showcase">
+        <div class="hero-showcase-toolbar">
+          <div class="hero-showcase-dots-mac"><span></span><span></span><span></span></div>
+          <div class="hero-showcase-tabs">
+            <div class="hstab active" onclick="hsGoTo(0)">Presentation Design</div>
+            <div class="hstab" onclick="hsGoTo(1)">Annual Reports</div>
+            <div class="hstab" onclick="hsGoTo(2)">E-Learning</div>
+            <div class="hstab" onclick="hsGoTo(3)">Whitepapers</div>
+          </div>
+        </div>
+        <div class="hero-showcase-track-wrap">
+          <div class="hero-showcase-track" id="hs-track">
+
+            <!-- SLIDE 1: Presentation Design -->
+            <div class="hero-showcase-slide">
+              <div class="hss-content">
+                <div class="hss-left">
+                  <div class="hss-category">Presentation Design</div>
+                  <div class="hss-title">Slides that command the room.</div>
+                  <div class="hss-desc">From executive briefings to investor pitches &mdash; we transform raw content into structured, visual, on-brand decks that communicate with authority. Delivered in 24 hours.</div>
+                  <div class="hss-tags">
+                    <span class="hss-tag">PowerPoint</span>
+                    <span class="hss-tag">Google Slides</span>
+                    <span class="hss-tag">Keynote</span>
+                    <span class="hss-tag">24hr turnaround</span>
+                  </div>
+                </div>
+                <div class="hss-right">
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">Q4 Strategy Deck &mdash; 28 slides</span><span class="hss-card-badge badge-done">Delivered</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w95"></div><div class="hss-bar w75"></div><div class="hss-bar w55"></div></div>
+                  </div>
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">Investor Pitch &mdash; Series B</span><span class="hss-card-badge badge-live">In progress</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w85"></div><div class="hss-bar w65"></div><div class="hss-bar w45"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 2: Annual Reports -->
+            <div class="hero-showcase-slide">
+              <div class="hss-content">
+                <div class="hss-left">
+                  <div class="hss-category">Annual &amp; Impact Reports</div>
+                  <div class="hss-title">Publications worth keeping.</div>
+                  <div class="hss-desc">Typography-led, data-rich annual reports designed to communicate impact at the highest level &mdash; for print, digital, and every screen in between.</div>
+                  <div class="hss-tags">
+                    <span class="hss-tag">InDesign</span>
+                    <span class="hss-tag">Print-ready</span>
+                    <span class="hss-tag">Digital PDF</span>
+                    <span class="hss-tag">Data visualization</span>
+                  </div>
+                </div>
+                <div class="hss-right">
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">Impact Report 2024 &mdash; 72 pages</span><span class="hss-card-badge badge-done">Delivered</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w95"></div><div class="hss-bar w80"></div><div class="hss-bar w60"></div></div>
+                  </div>
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">NGO Annual Review &mdash; 48 pages</span><span class="hss-card-badge badge-done">Delivered</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w85"></div><div class="hss-bar w65"></div><div class="hss-bar w40"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 3: E-Learning -->
+            <div class="hero-showcase-slide">
+              <div class="hss-content">
+                <div class="hss-left">
+                  <div class="hss-category">E-Learning &amp; Training</div>
+                  <div class="hss-title">Learning content that actually works.</div>
+                  <div class="hss-desc">Hundreds of course modules, standardized templates, and brand guidelines &mdash; built for consistency at scale across entire e-learning platforms.</div>
+                  <div class="hss-tags">
+                    <span class="hss-tag">LMS-ready</span>
+                    <span class="hss-tag">Slide modules</span>
+                    <span class="hss-tag">Templates</span>
+                    <span class="hss-tag">High volume</span>
+                  </div>
+                </div>
+                <div class="hss-right">
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">Medical CME Modules &mdash; 500+ slides</span><span class="hss-card-badge badge-done">Ongoing</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w95"></div><div class="hss-bar w75"></div><div class="hss-bar w55"></div></div>
+                  </div>
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">Corporate L&amp;D Series &mdash; 12 modules</span><span class="hss-card-badge badge-live">In progress</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w80"></div><div class="hss-bar w60"></div><div class="hss-bar w40"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- SLIDE 4: Whitepapers -->
+            <div class="hero-showcase-slide">
+              <div class="hss-content">
+                <div class="hss-left">
+                  <div class="hss-category">Whitepapers &amp; Publications</div>
+                  <div class="hss-title">Research made readable.</div>
+                  <div class="hss-desc">Long-form editorial design that transforms dense research into authoritative publications &mdash; structured for expert audiences, designed for credibility.</div>
+                  <div class="hss-tags">
+                    <span class="hss-tag">Whitepapers</span>
+                    <span class="hss-tag">Research papers</span>
+                    <span class="hss-tag">Brochures</span>
+                    <span class="hss-tag">Newsletters</span>
+                  </div>
+                </div>
+                <div class="hss-right">
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">Policy Brief &mdash; 24 pages</span><span class="hss-card-badge badge-done">Delivered</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w90"></div><div class="hss-bar w70"></div><div class="hss-bar w50"></div></div>
+                  </div>
+                  <div class="hss-card">
+                    <div class="hss-card-head"><span class="hss-card-title">Research Series &mdash; Q1 2025</span><span class="hss-card-badge badge-live">In progress</span></div>
+                    <div class="hss-bars"><div class="hss-bar grad w85"></div><div class="hss-bar w60"></div><div class="hss-bar w40"></div></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="hss-nav">
+          <div class="hss-progress">
+            <button class="hss-dot active" onclick="hsGoTo(0)"></button>
+            <button class="hss-dot" onclick="hsGoTo(1)"></button>
+            <button class="hss-dot" onclick="hsGoTo(2)"></button>
+            <button class="hss-dot" onclick="hsGoTo(3)"></button>
+          </div>
+          <div class="hss-counter" id="hs-counter">1 / 4</div>
+          <div class="hss-arrows">
+            <button class="hss-arrow" onclick="hsPrev()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M10 4L6 8l4 4"/></svg></button>
+            <button class="hss-arrow" onclick="hsNext()"><svg width="16" height="16" viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M6 4l4 4-4 4"/></svg></button>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stats-inner">
+    <div class="stat-item fade-up"><div class="stat-num">4+</div><div class="stat-label">Years experience</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">10k+</div><div class="stat-label">Slides delivered</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">100+</div><div class="stat-label">Reports &amp; publications</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">3+</div><div class="stat-label">Year partnerships</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">24hr</div><div class="stat-label">Avg turnaround</div></div>
+    <div class="stat-item fade-up"><div class="stat-num">100%</div><div class="stat-label">Revision satisfaction</div></div>
+  </div>
+</section>
+
+<!-- STRIP -->
+<section class="strip">
+  <div class="strip-track">
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Presentation Design</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Annual Reports</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>E-Learning Modules</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Editorial Design</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>NGO Publications</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Corporate Reports</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Slide Templates</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Whitepapers</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Infographics</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Brochures</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Newsletters</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Training Materials</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Presentation Design</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Annual Reports</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>E-Learning Modules</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Editorial Design</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>NGO Publications</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Corporate Reports</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Slide Templates</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Whitepapers</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Infographics</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Brochures</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Newsletters</span></div>
+    <div class="strip-pill"><div class="strip-pill-icon"></div><span>Training Materials</span></div>
+  </div>
+</section>
+
+<!-- TRUSTED -->
+<section class="section">
+  <div class="container">
+    <div class="trusted-wrap">
+      <div class="trusted-left">
+        <div class="label">Who we work with</div>
+        <h2>Organizations that can&apos;t afford average design.</h2>
+        <p>Our clients operate in high-stakes content environments &mdash; where every slide, report, and publication reflects directly on their credibility. They come to us because they need design that shows up reliably, at volume, without compromising on quality.</p>
+        <div class="client-cards">
+          <div class="client-card"><div class="client-card-left"><strong>Medical E-Learning Platform</strong><span>Europe &middot; 3+ year partnership</span></div><div class="client-card-tag">E-Learning</div></div>
+          <div class="client-card"><div class="client-card-left"><strong>Global Consulting Firm</strong><span>International &middot; Ongoing</span></div><div class="client-card-tag">Consulting</div></div>
+          <div class="client-card"><div class="client-card-left"><strong>NGO &amp; Development Organizations</strong><span>Multiple regions &middot; Publications</span></div><div class="client-card-tag">NGO</div></div>
+          <div class="client-card"><div class="client-card-left"><strong>Corporate L&amp;D Teams</strong><span>Enterprise &middot; Training materials</span></div><div class="client-card-tag">Corporate</div></div>
+        </div>
+      </div>
+      <div class="trusted-right">
+        <h3>What sets us apart.</h3>
+        <div class="stat-row">
+          <div class="stat-row-num">Deep domain knowledge</div>
+          <div class="stat-row-label">We don&apos;t just design slides &mdash; we understand the content behind them. Medical education, consulting frameworks, NGO impact reporting &mdash; we speak your language and design for your audience.</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-row-num">Built for volume</div>
+          <div class="stat-row-label">High-volume work is where most designers fall apart. Our process is designed to maintain quality across hundreds of deliverables &mdash; consistent typography, consistent hierarchy, consistent results.</div>
+        </div>
+        <div class="stat-row">
+          <div class="stat-row-num">A partner, not a vendor</div>
+          <div class="stat-row-label">We invest in understanding your brand deeply. The longer we work together, the better the output &mdash; because we&apos;re not starting from scratch each time. We&apos;re building on shared knowledge.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PAIN -->
+<section class="section pain-section">
+  <div class="pain-blob"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="label">The problem</div>
+    <h2>Is your content working as hard as it should?</h2>
+    <div class="pain-grid">
+      <div class="pain-card">
+        <div class="pain-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg></div>
+        <h3>Drowning in content, short on time</h3>
+        <p>Deadlines are tight, decks pile up, and design always feels like the last priority. The work suffers for it.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg></div>
+        <h3>Inconsistent quality across deliverables</h3>
+        <p>Different people, different templates, different results. Nothing looks like it came from the same organization.</p>
+      </div>
+      <div class="pain-card">
+        <div class="pain-card-icon"><svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="rgba(255,255,255,0.9)" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><line x1="23" y1="11" x2="17" y2="11"/></svg></div>
+        <h3>Agencies are slow. Freelancers are unreliable.</h3>
+        <p>You need someone who understands your content deeply, shows up every time, and delivers without hand-holding.</p>
+      </div>
+    </div>
+    <div class="pain-cta">
+      <h2>This is where Exin Studio comes in.</h2>
+      <p>We embed deeply into your content workflow &mdash; learning your brand, your audience, and your standards &mdash; so every deliverable looks like it was made by someone who actually cares.</p>
+      <div class="pain-cta-actions">
+        <a href="#" class="btn btn-white btn-lg" onclick="showPage('contact')">Let&apos;s work together <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+        <a href="#" class="btn btn-ghost btn-lg" onclick="showPage('work')">See our work</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- HOW WE WORK -->
+<section class="section">
+  <div class="container">
+    <div class="how-wrap">
+      <div class="how-left">
+        <div class="label">How it works</div>
+        <h2>You send the content. We make it exceptional.</h2>
+        <p>No lengthy onboarding. No back-and-forth briefing calls. Just fast, high-quality design that respects your deadline and your brand.</p>
+        <div class="steps">
+          <div class="step">
+            <div class="step-num">01</div>
+            <div>
+              <h4>Send us your content</h4>
+              <p>Share your raw material &mdash; a rough deck, a Word doc, a brief, or just a topic. We work with whatever you have. No templates required, no lengthy forms.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">02</div>
+            <div>
+              <h4>We transform it in 24 hours</h4>
+              <p>Your content comes back structured, visual, and on-brand. We handle hierarchy, layout, and typography &mdash; everything that makes content look like it was made by someone who cares.</p>
+            </div>
+          </div>
+          <div class="step">
+            <div class="step-num">03</div>
+            <div>
+              <h4>Refine until it&apos;s perfect</h4>
+              <p>We revise until you&apos;re completely satisfied. No revision caps, no extra charges. And over time, fewer revisions &mdash; because we know your brand better each time.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="how-visual">
+        <div class="how-visual-label">What your content becomes</div>
+        <div class="mock-task" style="padding:22px;">
+          <div style="display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:16px;">
+            <div>
+              <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9896A8;margin-bottom:6px;">Annual Report 2024</div>
+              <div style="font-size:1.1rem;font-weight:800;letter-spacing:-0.03em;color:#0D0D1A;line-height:1.2;">Delivering Impact at Scale</div>
+            </div>
+            <div style="width:40px;height:40px;border-radius:10px;background:linear-gradient(135deg,#5B3CF5,#C084FC);flex-shrink:0;"></div>
+          </div>
+          <div style="display:flex;gap:8px;margin-bottom:12px;">
+            <div style="flex:1;background:rgba(91,60,245,0.06);border-radius:8px;padding:10px;border:1px solid rgba(91,60,245,0.1);">
+              <div style="font-size:1.1rem;font-weight:800;background:linear-gradient(135deg,#5B3CF5,#C084FC);-webkit-background-clip:text;-webkit-text-fill-color:transparent;">94%</div>
+              <div style="font-size:0.62rem;color:#9896A8;margin-top:3px;font-weight:500;">Retention rate</div>
+            </div>
+            <div style="flex:1;background:rgba(34,197,94,0.06);border-radius:8px;padding:10px;border:1px solid rgba(34,197,94,0.1);">
+              <div style="font-size:1.1rem;font-weight:800;color:#16A34A;">+34%</div>
+              <div style="font-size:0.62rem;color:#9896A8;margin-top:3px;font-weight:500;">Revenue growth</div>
+            </div>
+            <div style="flex:1;background:rgba(249,115,22,0.06);border-radius:8px;padding:10px;border:1px solid rgba(249,115,22,0.1);">
+              <div style="font-size:1.1rem;font-weight:800;color:#EA580C;">12</div>
+              <div style="font-size:0.62rem;color:#9896A8;margin-top:3px;font-weight:500;">New markets</div>
+            </div>
+          </div>
+          <div style="display:flex;flex-direction:column;gap:5px;">
+            <div style="height:5px;border-radius:3px;background:linear-gradient(90deg,#5B3CF5 72%,#EBEBF5 72%);"></div>
+            <div style="height:5px;border-radius:3px;background:linear-gradient(90deg,#5B3CF5 48%,#EBEBF5 48%);"></div>
+            <div style="height:5px;border-radius:3px;background:linear-gradient(90deg,#5B3CF5 88%,#EBEBF5 88%);"></div>
+          </div>
+        </div>
+        <div class="mock-task" style="padding:22px;">
+          <div style="font-size:0.65rem;font-weight:700;text-transform:uppercase;letter-spacing:0.1em;color:#9896A8;margin-bottom:10px;">Slide 04 / Executive Briefing</div>
+          <div style="font-size:0.95rem;font-weight:800;letter-spacing:-0.02em;color:#0D0D1A;margin-bottom:14px;">Three strategic priorities for Q4</div>
+          <div style="display:flex;flex-direction:column;gap:7px;">
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(91,60,245,0.06);border-left:3px solid #5B3CF5;border-radius:0 8px 8px 0;">
+              <div style="font-size:0.72rem;font-weight:700;color:#5B3CF5;flex-shrink:0;">01</div>
+              <div style="font-size:0.72rem;color:#5A5870;">Expand into two new European markets</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(91,60,245,0.04);border-left:3px solid #9B59F5;border-radius:0 8px 8px 0;">
+              <div style="font-size:0.72rem;font-weight:700;color:#9B59F5;flex-shrink:0;">02</div>
+              <div style="font-size:0.72rem;color:#5A5870;">Launch updated product training modules</div>
+            </div>
+            <div style="display:flex;align-items:center;gap:10px;padding:9px 12px;background:rgba(91,60,245,0.02);border-left:3px solid #C084FC;border-radius:0 8px 8px 0;">
+              <div style="font-size:0.72rem;font-weight:700;color:#C084FC;flex-shrink:0;">03</div>
+              <div style="font-size:0.72rem;color:#5A5870;">Standardize reporting templates globally</div>
+            </div>
+          </div>
+        </div>
+        <div class="delivery-pill"><div class="delivery-dot"></div><p><strong>First draft delivered</strong> &middot; Within 24 hours</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="section" style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="services-header">
+      <div><div class="label">Services</div><h2>We cover everything your content needs.</h2></div>
+      <div><p>Deep expertise in presentation and editorial design &mdash; handling your most complex challenges consistently, quickly, and at the standard your audience expects.</p><a href="#" class="btn btn-secondary" style="margin-top:28px;" onclick="showPage('services')">All services</a></div>
+    </div>
+    <div class="tabs">
+      <button class="tab-btn active" onclick="switchTab(this,'tab-pres')">Presentation Design</button>
+      <button class="tab-btn" onclick="switchTab(this,'tab-edit')">Editorial Design</button>
+    </div>
+    <div id="tab-pres" class="tab-content active">
+      <div class="svc-card"><div class="svc-icon">&#128202;</div><h3>Slide Decks &amp; Pitch Presentations</h3><p>High-stakes presentations designed to communicate complex ideas with clarity and confidence.</p><div class="svc-tags"><span class="svc-tag">PowerPoint</span><span class="svc-tag">Google Slides</span><span class="svc-tag">Keynote</span></div></div>
+      <div class="svc-card"><div class="svc-icon">&#127891;</div><h3>E-Learning &amp; Training Materials</h3><p>Educational content designed for retention &mdash; structured, visual, and consistent at scale.</p><div class="svc-tags"><span class="svc-tag">E-Learning</span><span class="svc-tag">LMS</span><span class="svc-tag">Training</span></div></div>
+      <div class="svc-card"><div class="svc-icon">&#128193;</div><h3>Slide Templates &amp; Standards</h3><p>Master templates and design systems that bring consistency across your entire organization.</p><div class="svc-tags"><span class="svc-tag">Templates</span><span class="svc-tag">Brand system</span></div></div>
+      <div class="svc-card"><div class="svc-icon">&#128200;</div><h3>Data &amp; Infographic Design</h3><p>Complex data made visual &mdash; charts, diagrams, and infographics that tell a clear story.</p><div class="svc-tags"><span class="svc-tag">Infographics</span><span class="svc-tag">Data viz</span></div></div>
+    </div>
+    <div id="tab-edit" class="tab-content">
+      <div class="svc-card"><div class="svc-icon">&#128196;</div><h3>Annual &amp; Impact Reports</h3><p>Publication-quality reports designed to communicate results, values, and impact at the highest level.</p><div class="svc-tags"><span class="svc-tag">InDesign</span><span class="svc-tag">Print-ready</span><span class="svc-tag">Digital</span></div></div>
+      <div class="svc-card"><div class="svc-icon">&#128240;</div><h3>Whitepapers &amp; Publications</h3><p>Long-form editorial design that makes dense, technical content readable and authoritative.</p><div class="svc-tags"><span class="svc-tag">Whitepapers</span><span class="svc-tag">Research</span></div></div>
+      <div class="svc-card"><div class="svc-icon">&#128236;</div><h3>Brochures &amp; Newsletters</h3><p>Communication materials that are beautifully designed and consistently on-brand, every time.</p><div class="svc-tags"><span class="svc-tag">Brochures</span><span class="svc-tag">Newsletters</span></div></div>
+      <div class="svc-card"><div class="svc-icon">&#127757;</div><h3>NGO &amp; Development Communications</h3><p>Mission-driven design for organizations that need content to move people, not just inform them.</p><div class="svc-tags"><span class="svc-tag">NGO</span><span class="svc-tag">Impact</span></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- BENEFITS -->
+<section class="section">
+  <div class="container">
+    <div class="label">Why Exin Studio</div>
+    <h2>The design partner you&apos;ve been looking for.</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#10022;</div><h3>Senior craft, every time</h3><p>Every deliverable is handled by a senior designer with 4+ years of focused experience in presentation and editorial design.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#9889;</div><h3>24-hour turnaround</h3><p>Fast without cutting corners. Most deliverables come back within 24 hours &mdash; because your deadlines are real.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#129309;</div><h3>Long-term partnerships</h3><p>We embed into your workflow, learn your brand, and become a seamless extension of your team over time.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#128230;</div><h3>High-volume ready</h3><p>10,000+ slides delivered. We&apos;re built for scale &mdash; whether it&apos;s 10 slides or 300, the quality never drops.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#8734;</div><h3>Unlimited revisions</h3><p>We revise until you&apos;re completely satisfied. No revision limits, no extra charges, no friction.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#128193;</div><h3>100% yours</h3><p>Every file, every source document &mdash; fully handed over. You own everything we create, forever.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section" style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);overflow:hidden;">
+  <div class="container">
+    <div class="label">What clients say</div>
+    <h2 style="margin-bottom:60px;">Trusted for years, not just projects.</h2>
+  </div>
+  <div class="tcarousel-outer">
+    <div class="tcarousel-viewport">
+      <!-- Fade overlays -->
+      <div class="tcarousel-fade-left"></div>
+      <div class="tcarousel-fade-right"></div>
+      <div class="tcarousel-track" id="tcarousel-track">
+
+        <div class="tcarousel-slide active">
+          <div class="tcarousel-card">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="tcarousel-quote">&ldquo;Working with Exin Studio has transformed how we present our content. The consistency, speed, and quality across thousands of deliverables is something we haven&apos;t found anywhere else. They feel like part of our team.&rdquo;</div>
+            <div class="tcarousel-author">
+              <div class="tcarousel-avatar" style="background:linear-gradient(135deg,#5B3CF5,#9B59F5);">H</div>
+              <div><div class="tcarousel-name">Head of Content</div><div class="tcarousel-role">European Medical E-Learning Platform</div><div class="tcarousel-badge">3+ year partnership</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tcarousel-slide">
+          <div class="tcarousel-card">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="tcarousel-quote">&ldquo;We sent a rough deck the night before a board presentation. By morning it looked like it came from a top-tier consultancy. The speed was impressive &mdash; the quality was extraordinary. We&apos;ve never looked back.&rdquo;</div>
+            <div class="tcarousel-author">
+              <div class="tcarousel-avatar" style="background:linear-gradient(135deg,#0EA5E9,#6366F1);">D</div>
+              <div><div class="tcarousel-name">Director of Strategy</div><div class="tcarousel-role">International Consulting Firm</div><div class="tcarousel-badge">Ongoing partnership</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tcarousel-slide">
+          <div class="tcarousel-card">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="tcarousel-quote">&ldquo;Our research whitepaper needed to speak to both policymakers and practitioners. Exin Studio understood this immediately &mdash; the typography, structure, and data visualizations were all perfectly calibrated for our audience.&rdquo;</div>
+            <div class="tcarousel-author">
+              <div class="tcarousel-avatar" style="background:linear-gradient(135deg,#16A34A,#059669);">R</div>
+              <div><div class="tcarousel-name">Research Director</div><div class="tcarousel-role">Global Development Organization</div><div class="tcarousel-badge">Whitepaper series</div></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tcarousel-slide">
+          <div class="tcarousel-card">
+            <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+            <div class="tcarousel-quote">&ldquo;Our annual report used to take months and three rounds of agency revisions. With Exin Studio, we had a publication-quality report in days. Complex data made genuinely readable &mdash; the data visualization work alone was worth it.&rdquo;</div>
+            <div class="tcarousel-author">
+              <div class="tcarousel-avatar" style="background:linear-gradient(135deg,#F59E0B,#EF4444);">S</div>
+              <div><div class="tcarousel-name">Communications Lead</div><div class="tcarousel-role">European NGO Network</div><div class="tcarousel-badge">Annual report design</div></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+    <div class="tcarousel-controls">
+      <button class="tarrow" onclick="prevSlide()"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M11 4L7 9l4 5"/></svg></button>
+      <div class="tcarousel-dots">
+        <button class="tdot active" onclick="goToSlide(0)"></button>
+        <button class="tdot" onclick="goToSlide(1)"></button>
+        <button class="tdot" onclick="goToSlide(2)"></button>
+        <button class="tdot" onclick="goToSlide(3)"></button>
+      </div>
+      <button class="tarrow" onclick="nextSlide()"><svg width="18" height="18" viewBox="0 0 18 18" fill="none" stroke="currentColor" stroke-width="2"><path d="M7 4l4 5-4 5"/></svg></button>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON -->
+<section class="section">
+  <div class="container">
+    <div class="label">The difference</div>
+    <h2>What makes Exin Studio different.</h2>
+    <table class="comparison-table">
+      <thead><tr><th></th><th class="hl">Exin Studio</th><th>Freelancer</th><th>Design Agency</th></tr></thead>
+      <tbody>
+        <tr><td>Turnaround</td><td class="hl"><span class="chk">24 hours</span></td><td>1&ndash;2 weeks</td><td>2&ndash;4 weeks</td></tr>
+        <tr><td>Revision policy</td><td class="hl"><span class="chk">Unlimited</span></td><td>Limited</td><td>Charged extra</td></tr>
+        <tr><td>Knows your brand deeply</td><td class="hl"><span class="chk">Always</span></td><td class="crs">Rarely</td><td class="crs">Sometimes</td></tr>
+        <tr><td>Long-term partnership</td><td class="hl"><span class="chk">Built for it</span></td><td class="crs">Rarely</td><td class="crs">Sometimes</td></tr>
+        <tr><td>Senior expertise</td><td class="hl"><span class="chk">Guaranteed</span></td><td class="crs">Varies</td><td class="crs">Varies</td></tr>
+        <tr><td>High-volume capacity</td><td class="hl"><span class="chk">Yes</span></td><td class="crs">Limited</td><td><span class="chk">Yes</span></td></tr>
+        <tr><td>Pricing</td><td class="hl"><span class="chk">Fixed, transparent</span></td><td>Per task</td><td>High overhead</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section" style="background:var(--bg-soft);border-top:1px solid var(--border);">
+  <div class="container">
+    <div class="label">FAQ</div>
+    <h2>Frequently asked questions.</h2>
+    <div class="faq-list">
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What types of organizations do you work with?<div class="faq-icon">+</div></div><div class="faq-a"><p>We work with e-learning platforms, consulting firms, NGOs, corporate L&amp;D teams, and conference organizers &mdash; any organization that produces high volumes of complex content that needs to look exceptional.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How fast do you typically deliver?<div class="faq-icon">+</div></div><div class="faq-a"><p>Most projects come back within 24 hours. For larger volumes we&apos;ll agree on a clear timeline upfront &mdash; no surprises.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Do you work on one-off projects or only long-term?<div class="faq-icon">+</div></div><div class="faq-a"><p>Both &mdash; but we&apos;re built for long-term. Our best work happens when we know your brand deeply. That said, one-off projects are always welcome.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">What tools do you design in?<div class="faq-icon">+</div></div><div class="faq-a"><p>Primarily Google Slides, PowerPoint, and InDesign &mdash; depending on your workflow. We adapt to your stack, not the other way around.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">How do revisions work?<div class="faq-icon">+</div></div><div class="faq-a"><p>Unlimited, always. We revise until you&apos;re completely happy. No extra charges, no limits, no friction.</p></div></div>
+      <div class="faq-item"><div class="faq-q" onclick="toggleFaq(this)">Can you handle large volumes?<div class="faq-icon">+</div></div><div class="faq-a"><p>Absolutely. We&apos;ve delivered 10,000+ slides and 100+ publications. High volume is where we thrive &mdash; our process is built for consistency at scale.</p></div></div>
+    </div>
+  </div>
+</section>
+
+<!-- FOOTER CTA -->
+<section class="footer-cta">
+  <div class="container">
+    <h2>Ready to make your content exceptional?</h2>
+    <p>Whether you have an urgent deadline or a long-term content challenge, we&apos;d love to hear from you.</p>
+    <div class="footer-cta-btns">
+      <a href="#" class="btn btn-white btn-lg" onclick="showPage('contact')">Get in touch <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
+      <a href="mailto:hello@exinstudio.com" class="btn btn-ghost btn-lg">hello@exinstudio.com</a>
+    </div>
+  </div>
+</section>
+</div><!-- /home -->
+
+<!-- ========== WORK ========== -->
+<div id="page-work" class="page">
+<section class="page-hero">
+  <div class="blob blob-1"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="label">Our work</div>
+    <h1>Projects that speak <span class="grad">for themselves.</span></h1>
+    <p style="max-width:520px;margin-top:20px;">A selection of presentation and editorial design projects &mdash; each built around the client&apos;s content, delivered fast, and refined until it&apos;s exactly right.</p>
+    <div class="work-grid">
+      <div class="work-card"><div class="work-visual" style="background:linear-gradient(135deg,rgba(91,60,245,0.08),rgba(192,132,252,0.12));"><div style="width:80%;background:white;border-radius:12px;padding:22px;box-shadow:0 8px 32px rgba(91,60,245,0.12);border:1px solid rgba(91,60,245,0.1);"><div style="height:8px;border-radius:4px;background:linear-gradient(135deg,#5B3CF5,#C084FC);width:70%;margin-bottom:16px;"></div><div style="display:flex;gap:8px;margin-bottom:12px;"><div style="flex:1;height:38px;background:#F8F7FF;border-radius:6px;"></div><div style="flex:2;height:38px;background:#F8F7FF;border-radius:6px;"></div></div><div style="height:5px;background:#EBEBF5;border-radius:3px;width:80%;margin-bottom:7px;"></div><div style="height:5px;background:#EBEBF5;border-radius:3px;width:55%;"></div></div></div><div class="work-info"><div class="work-tags"><span class="work-tag primary">E-Learning</span><span class="work-tag secondary">Presentation</span></div><h3>Medical E-Learning Presentation System</h3><p>A complete presentation design system for a European medical education platform &mdash; 500+ slide modules, standardized templates, and brand guidelines.</p><div class="work-stats"><div class="work-stat"><strong>500+</strong><span>Slides</span></div><div class="work-stat"><strong>3 yrs</strong><span>Partnership</span></div><div class="work-stat"><strong>Europe</strong><span>Region</span></div></div></div></div>
+      <div class="work-card"><div class="work-visual" style="background:linear-gradient(135deg,rgba(34,197,94,0.06),rgba(16,185,129,0.05));"><div style="width:80%;background:white;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(0,0,0,0.07);border:1px solid #EBEBF5;"><div style="font-weight:700;font-size:0.875rem;margin-bottom:16px;">Impact Report 2024</div><div style="display:flex;gap:6px;align-items:flex-end;margin-bottom:14px;"><div style="width:16px;height:22px;background:rgba(91,60,245,0.15);border-radius:3px;"></div><div style="width:16px;height:38px;background:rgba(91,60,245,0.3);border-radius:3px;"></div><div style="width:16px;height:30px;background:rgba(91,60,245,0.45);border-radius:3px;"></div><div style="width:16px;height:52px;background:rgba(91,60,245,0.65);border-radius:3px;"></div><div style="width:16px;height:44px;background:#5B3CF5;border-radius:3px;"></div></div><div style="height:5px;background:#EBEBF5;border-radius:3px;width:90%;margin-bottom:7px;"></div><div style="height:5px;background:#EBEBF5;border-radius:3px;width:65%;"></div></div></div><div class="work-info"><div class="work-tags"><span class="work-tag primary">NGO</span><span class="work-tag secondary">Editorial</span></div><h3>NGO Annual Impact Report Series</h3><p>Publication-quality annual reports for international development organizations &mdash; data-heavy, mission-driven, designed for print and digital distribution.</p><div class="work-stats"><div class="work-stat"><strong>80+</strong><span>Pages</span></div><div class="work-stat"><strong>4 yrs</strong><span>Annual</span></div><div class="work-stat"><strong>Global</strong><span>Reach</span></div></div></div></div>
+      <div class="work-card"><div class="work-visual" style="background:linear-gradient(135deg,rgba(249,115,22,0.05),rgba(251,191,36,0.07));"><div style="width:80%;background:white;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(0,0,0,0.07);border:1px solid #EBEBF5;"><div style="font-weight:700;font-size:0.875rem;margin-bottom:14px;">Q4 Strategy</div><div style="display:grid;grid-template-columns:1fr 1fr;gap:8px;"><div style="background:#F8F7FF;border-radius:8px;height:46px;"></div><div style="background:rgba(91,60,245,0.07);border-radius:8px;height:46px;"></div><div style="background:rgba(251,191,36,0.1);border-radius:8px;height:46px;"></div><div style="background:rgba(34,197,94,0.07);border-radius:8px;height:46px;"></div></div></div></div><div class="work-info"><div class="work-tags"><span class="work-tag primary">Consulting</span><span class="work-tag secondary">Presentation</span></div><h3>Consulting Firm Strategy Presentations</h3><p>High-stakes strategy decks for senior leadership audiences &mdash; structured for clarity, designed to command confidence in the room.</p><div class="work-stats"><div class="work-stat"><strong>200+</strong><span>Decks</span></div><div class="work-stat"><strong>24hr</strong><span>Turnaround</span></div><div class="work-stat"><strong>C-Suite</strong><span>Audience</span></div></div></div></div>
+      <div class="work-card"><div class="work-visual" style="background:linear-gradient(135deg,rgba(14,165,233,0.05),rgba(99,102,241,0.07));"><div style="width:80%;background:white;border-radius:12px;padding:22px;box-shadow:0 8px 24px rgba(0,0,0,0.07);border:1px solid #EBEBF5;"><div style="font-weight:700;font-size:0.875rem;margin-bottom:14px;">Research Whitepaper</div><div style="display:flex;flex-direction:column;gap:6px;"><div style="height:5px;background:#EBEBF5;border-radius:3px;width:100%;"></div><div style="height:5px;background:#EBEBF5;border-radius:3px;width:85%;"></div><div style="height:5px;background:linear-gradient(135deg,#5B3CF5,#C084FC);border-radius:3px;width:58%;margin-top:4px;"></div><div style="height:5px;background:#EBEBF5;border-radius:3px;width:80%;"></div><div style="height:5px;background:#EBEBF5;border-radius:3px;width:68%;"></div></div></div></div><div class="work-info"><div class="work-tags"><span class="work-tag primary">Corporate L&amp;D</span><span class="work-tag secondary">Whitepaper</span></div><h3>Corporate Learning &amp; Development Materials</h3><p>Comprehensive training materials, whitepapers, and learning guides designed to engage employees and drive knowledge retention at scale.</p><div class="work-stats"><div class="work-stat"><strong>50+</strong><span>Publications</span></div><div class="work-stat"><strong>Enterprise</strong><span>Scale</span></div><div class="work-stat"><strong>Multi-lang</strong><span>Support</span></div></div></div></div>
+    </div>
+  </div>
+</section>
+<section class="footer-cta"><div class="container"><h2>Have a project in mind?</h2><p>We&apos;d love to hear about your content challenges and discuss how we can help.</p><div class="footer-cta-btns"><a href="#" class="btn btn-white btn-lg" onclick="showPage('contact')">Start a conversation</a><a href="mailto:hello@exinstudio.com" class="btn btn-ghost btn-lg">hello@exinstudio.com</a></div></div></section>
+</div>
+
+<!-- ========== SERVICES ========== -->
+<div id="page-services" class="page">
+<section class="page-hero">
+  <div class="blob blob-1"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="label">Services</div>
+    <h1>Everything your <span class="grad">content needs.</span></h1>
+    <p style="max-width:560px;margin-top:20px;">Two deep specialisms. One studio. Built for organizations that produce complex, high-volume content and need it to look exceptional &mdash; every time.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div style="margin-bottom:80px;">
+      <div class="label">Presentation Design</div>
+      <h2>Slides that command attention.</h2>
+      <p style="max-width:600px;">From one-off pitch decks to complete presentation systems &mdash; we design slides that are structured for clarity and built to last.</p>
+      <div class="svcs-grid">
+        <div class="svc-card"><div class="svc-icon">&#128202;</div><h3>Pitch &amp; Strategy Decks</h3><p>High-stakes presentations for leadership, investors, and senior audiences.</p><div class="svc-tags"><span class="svc-tag">PowerPoint</span><span class="svc-tag">Google Slides</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#127891;</div><h3>E-Learning Modules</h3><p>Educational slide content designed for retention &mdash; structured, consistent, scalable.</p><div class="svc-tags"><span class="svc-tag">E-Learning</span><span class="svc-tag">LMS</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#128193;</div><h3>Slide Templates &amp; Systems</h3><p>Master template libraries and design standards for organizational consistency.</p><div class="svc-tags"><span class="svc-tag">Templates</span><span class="svc-tag">Guidelines</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#128200;</div><h3>Data Visualization</h3><p>Complex data transformed into clear, compelling visual stories.</p><div class="svc-tags"><span class="svc-tag">Infographics</span><span class="svc-tag">Data viz</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#127963;</div><h3>Conference Presentations</h3><p>Speaker decks designed to engage live audiences across all formats.</p><div class="svc-tags"><span class="svc-tag">Conferences</span><span class="svc-tag">Events</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#128260;</div><h3>Presentation Standardization</h3><p>Bringing consistency to existing slide libraries &mdash; reformatting at volume.</p><div class="svc-tags"><span class="svc-tag">Bulk</span><span class="svc-tag">Refresh</span></div></div>
+      </div>
+    </div>
+    <div style="padding-top:80px;border-top:1px solid var(--border);">
+      <div class="label">Editorial Design</div>
+      <h2>Publications worth keeping.</h2>
+      <p style="max-width:600px;">Typography-led, content-first editorial design that elevates every page &mdash; from dense research reports to beautiful annual publications.</p>
+      <div class="svcs-grid">
+        <div class="svc-card"><div class="svc-icon">&#128196;</div><h3>Annual &amp; Impact Reports</h3><p>Publication-quality reports for print and digital distribution.</p><div class="svc-tags"><span class="svc-tag">InDesign</span><span class="svc-tag">Print</span><span class="svc-tag">Digital</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#128240;</div><h3>Whitepapers &amp; Research</h3><p>Long-form editorial design that makes technical content readable and authoritative.</p><div class="svc-tags"><span class="svc-tag">Research</span><span class="svc-tag">Academic</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#128236;</div><h3>Brochures &amp; Newsletters</h3><p>On-brand communication materials for every touchpoint.</p><div class="svc-tags"><span class="svc-tag">Print</span><span class="svc-tag">Digital</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#127757;</div><h3>NGO Communications</h3><p>Mission-driven design that moves people, not just informs them.</p><div class="svc-tags"><span class="svc-tag">NGO</span><span class="svc-tag">Impact</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#128218;</div><h3>Corporate Magazines</h3><p>Internal and external publications designed to consumer publishing standards.</p><div class="svc-tags"><span class="svc-tag">Magazine</span><span class="svc-tag">Journal</span></div></div>
+        <div class="svc-card"><div class="svc-icon">&#128396;</div><h3>Typography &amp; Layout Systems</h3><p>Bespoke type hierarchies, grid structures, and style guides built to scale.</p><div class="svc-tags"><span class="svc-tag">Typography</span><span class="svc-tag">Systems</span></div></div>
+      </div>
+    </div>
+    <div class="process-block">
+      <div class="label">How we work</div>
+      <h2>Our process.</h2>
+      <div class="process-steps">
+        <div class="proc-step"><div class="proc-num">01</div><h4>Brief</h4><p>Share your content, requirements, and brand guidelines. We get up to speed fast.</p></div>
+        <div class="proc-step"><div class="proc-num">02</div><h4>Design</h4><p>First draft within 24 hours. Structured, visual, and aligned to your standards.</p></div>
+        <div class="proc-step"><div class="proc-num">03</div><h4>Refine</h4><p>Unlimited revisions until you&apos;re completely satisfied.</p></div>
+        <div class="proc-step"><div class="proc-num">04</div><h4>Deliver</h4><p>All source files handed over in any format you need.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="footer-cta"><div class="container"><h2>Ready to get started?</h2><p>Tell us about your project and we&apos;ll get back to you within 24 hours.</p><div class="footer-cta-btns"><a href="#" class="btn btn-white btn-lg" onclick="showPage('contact')">Get in touch</a><a href="mailto:hello@exinstudio.com" class="btn btn-ghost btn-lg">hello@exinstudio.com</a></div></div></section>
+</div>
+
+<!-- ========== ABOUT ========== -->
+<div id="page-about" class="page">
+<section class="page-hero">
+  <div class="blob blob-1"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="label">About</div>
+    <h1>Design as a <span class="grad">long-term practice.</span></h1>
+    <p style="max-width:600px;margin-top:20px;">Exin Studio was built around a simple belief: the best design work happens when a designer truly understands your content, your audience, and your standards &mdash; and that understanding only comes with time.</p>
+  </div>
+</section>
+<section class="section" style="padding-top:0;">
+  <div class="container">
+    <div class="about-grid">
+      <div class="about-sticky">
+        <div class="about-card">
+          <h3>By the numbers.</h3>
+          <div class="about-stat-r"><div><div class="about-stat-num">4+</div><div class="about-stat-lbl">Years focused experience</div></div></div>
+          <div class="about-stat-r"><div><div class="about-stat-num">10,000+</div><div class="about-stat-lbl">Slides delivered</div></div></div>
+          <div class="about-stat-r"><div><div class="about-stat-num">100+</div><div class="about-stat-lbl">Reports &amp; publications</div></div></div>
+          <div class="about-stat-r"><div><div class="about-stat-num">3+</div><div class="about-stat-lbl">Year longest partnership</div></div></div>
+        </div>
+      </div>
+      <div class="about-content">
+        <h2>A specialist studio for organizations with real content challenges.</h2>
+        <p>Exin Studio is a presentation and editorial design studio founded on the belief that great design is the result of deep familiarity &mdash; with a client&apos;s brand, their audience, and the content itself.</p>
+        <p>We specialize in high-volume, high-stakes design for organizations that can&apos;t afford inconsistency. E-learning platforms with hundreds of course modules. Consulting firms with weekly client decks. NGOs with annual reports that need to move people.</p>
+        <p>Our longest client partnerships run three years and counting. That&apos;s not a coincidence &mdash; it&apos;s the model. We invest in understanding your content deeply, so every project benefits from that accumulated knowledge.</p>
+        <p style="margin-bottom:0;">Working globally.</p>
+        <div style="margin-top:48px;">
+          <div style="font-weight:700;font-size:0.95rem;margin-bottom:20px;">Core expertise</div>
+          <div class="exp-item"><span class="exp-name">Presentation Design</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:98%;"></div></div></div>
+          <div class="exp-item"><span class="exp-name">Editorial &amp; Publication Design</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:90%;"></div></div></div>
+          <div class="exp-item"><span class="exp-name">Typography &amp; Layout</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:95%;"></div></div></div>
+          <div class="exp-item"><span class="exp-name">Data Visualization</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:85%;"></div></div></div>
+          <div class="exp-item"><span class="exp-name">Brand Systems</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:80%;"></div></div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+<section class="footer-cta"><div class="container"><h2>Let&apos;s build something that lasts.</h2><p>We&apos;re always open to conversations with organizations that take their content seriously.</p><div class="footer-cta-btns"><a href="#" class="btn btn-white btn-lg" onclick="showPage('contact')">Get in touch</a><a href="#" class="btn btn-ghost btn-lg" onclick="showPage('work')">See our work</a></div></div></section>
+</div>
+
+<!-- ========== CONTACT ========== -->
+<div id="page-contact" class="page">
+<section class="page-hero" style="padding-bottom:60px;">
+  <div class="blob blob-1"></div>
+  <div class="container" style="position:relative;z-index:1;">
+    <div class="label">Contact</div>
+    <h1>Let&apos;s talk about <span class="grad">your content.</span></h1>
+    <p style="max-width:500px;margin-top:20px;">Tell us about your project, your content challenges, or your timeline. We&apos;ll get back to you within 24 hours.</p>
+    <div class="contact-grid">
+      <div class="contact-info">
+        <h3>Get in touch</h3>
+        <p>Whether you have an urgent deadline or you&apos;re exploring a long-term design partnership, we&apos;d love to hear from you.</p>
+        <div class="contact-detail"><div class="contact-icon">&#9993;</div><a href="mailto:hello@exinstudio.com">hello@exinstudio.com</a></div>
+        <div class="contact-detail"><div class="contact-icon">&#128172;</div><a href="mailto:hello@exinstudio.com">hello@exinstudio.com</a></div>
+        <div class="contact-detail"><div class="contact-icon">&#128205;</div><span>Working globally</span></div>
+        <div class="expect-card">
+          <div class="expect-label">What to expect</div>
+          <div class="expect-item"><div class="expect-num"><span>1</span></div><p>We reply within 24 hours, usually sooner</p></div>
+          <div class="expect-item"><div class="expect-num"><span>2</span></div><p>A short call or email to understand your needs</p></div>
+          <div class="expect-item" style="margin-bottom:0;"><div class="expect-num"><span>3</span></div><p>A clear proposal with timeline and pricing &mdash; no surprises</p></div>
+        </div>
+      </div>
+      <div class="contact-form-card">
+        <div class="form-title">Send us a message</div>
+        <form id="contact-form" onsubmit="handleSubmit(event)">
+          <div class="form-row">
+            <div class="form-group"><label>First name</label><input type="text" placeholder="Sarah" required></div>
+            <div class="form-group"><label>Last name</label><input type="text" placeholder="Johnson" required></div>
+          </div>
+          <div class="form-group"><label>Email address</label><input type="email" placeholder="sarah@organization.com" required></div>
+          <div class="form-group"><label>Organization</label><input type="text" placeholder="Your organization name"></div>
+          <div class="form-group"><label>What do you need?</label><select><option value="">Select a service...</option><option>Presentation Design</option><option>E-Learning / Training Materials</option><option>Annual / Impact Report</option><option>Editorial Design</option><option>Slide Templates &amp; Standards</option><option>Ongoing Design Partnership</option><option>Something else</option></select></div>
+          <div class="form-group"><label>Tell us about your project</label><textarea placeholder="Describe your content, timeline, volume, and any specific requirements..."></textarea></div>
+          <button type="submit" class="btn btn-primary" style="width:100%;justify-content:center;">Send message <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></button>
+        </form>
+        <div id="form-success" style="display:none;text-align:center;padding:52px 0;">
+          <div style="width:60px;height:60px;border-radius:50%;background:linear-gradient(135deg,#5B3CF5,#C084FC);display:flex;align-items:center;justify-content:center;margin:0 auto 20px;font-size:1.5rem;color:white;">&#10003;</div>
+          <div style="font-size:1.5rem;font-weight:700;letter-spacing:-0.03em;margin-bottom:10px;">Message sent!</div>
+          <p>We&apos;ll get back to you within 24 hours.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand"><a href="#" class="footer-logo" onclick="showPage('home')">Exin<span>Studio</span></a><p>A long-term design partner for teams with complex, high-volume content needs. Presentations, reports, and everything in between.</p></div>
+      <div class="footer-col"><h5>Studio</h5><ul><li><a href="#" onclick="showPage('work')">Work</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('about')">About</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
+      <div class="footer-col"><h5>Services</h5><ul><li><a href="#" onclick="showPage('services')">Presentation Design</a></li><li><a href="#" onclick="showPage('services')">Editorial Design</a></li><li><a href="#" onclick="showPage('services')">E-Learning</a></li><li><a href="#" onclick="showPage('services')">Reports &amp; Publications</a></li></ul></div>
+      <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:hello@exinstudio.com">hello@exinstudio.com</a></li><li><a href="mailto:hello@exinstudio.com">hello@exinstudio.com</a></li><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://upwork.com" target="_blank">Upwork</a></li></ul></div>
+    </div>
+    <div class="footer-bottom"><p>&copy; 2025 Exin Studio. All rights reserved.</p><a href="mailto:hello@exinstudio.com" class="footer-email">hello@exinstudio.com</a></div>
+  </div>
+</footer>
+
+<script>
+// PAGE NAV
+function showPage(n){document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));document.getElementById('page-'+n).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});setTimeout(initFadeUps,100);}
+window.addEventListener('scroll',()=>{document.getElementById('nav').classList.toggle('scrolled',window.scrollY>40);});
+function toggleMenu(){var m=document.getElementById('mob-menu');m.style.display=m.style.display==='flex'?'none':'flex';}
+
+// TABS
+function switchTab(btn,id){document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));document.querySelectorAll('.tab-content').forEach(t=>t.classList.remove('active'));btn.classList.add('active');document.getElementById(id).classList.add('active');}
+
+// FAQ
+function toggleFaq(el){var item=el.parentElement;var open=item.classList.contains('open');document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));if(!open)item.classList.add('open');}
+
+// FADE UP
+function initFadeUps(){var obs=new IntersectionObserver(function(entries){entries.forEach(function(e,i){if(e.isIntersecting){setTimeout(function(){e.target.classList.add('visible');},i*80);obs.unobserve(e.target);}});},{threshold:0.1});document.querySelectorAll('.fade-up:not(.visible)').forEach(function(el){obs.observe(el);});}
+
+// FORM
+function handleSubmit(e){e.preventDefault();document.getElementById('contact-form').style.display='none';document.getElementById('form-success').style.display='block';}
+
+// HERO SHOWCASE CAROUSEL
+var hsCurrent=0;var hsTotal=4;var hsTimer;
+function hsGoTo(n){
+  hsCurrent=n;
+  document.getElementById('hs-track').style.transform='translateX(-'+n*100+'%)';
+  document.querySelectorAll('.hss-dot').forEach(function(d,i){d.classList.toggle('active',i===n);});
+  document.querySelectorAll('.hstab').forEach(function(t,i){t.classList.toggle('active',i===n);});
+  document.getElementById('hs-counter').textContent=(n+1)+' / '+hsTotal;
+  clearInterval(hsTimer);hsTimer=setInterval(function(){hsGoTo((hsCurrent+1)%hsTotal);},5000);
+}
+function hsNext(){hsGoTo((hsCurrent+1)%hsTotal);}
+function hsPrev(){hsGoTo((hsCurrent-1+hsTotal)%hsTotal);}
+
+// TESTIMONIAL CAROUSEL — peek layout
+var tCurrent=0;var tTotal=4;var tTimer;
+function goToSlide(n){
+  tCurrent=n;
+  // Each slide is 72% wide, centered by offsetting to show peek cards
+  var slideW=document.querySelector('.tcarousel-slide')?document.querySelector('.tcarousel-slide').offsetWidth:0;
+  var containerW=document.querySelector('.tcarousel-viewport')?document.querySelector('.tcarousel-viewport').offsetWidth:0;
+  var offset=n*slideW - (containerW - slideW)/2;
+  document.getElementById('tcarousel-track').style.transform='translateX(-'+offset+'px)';
+  document.querySelectorAll('.tcarousel-slide').forEach(function(s,i){s.classList.toggle('active',i===n);});
+  document.querySelectorAll('.tdot').forEach(function(d,i){d.classList.toggle('active',i===n);});
+  clearInterval(tTimer);tTimer=setInterval(function(){goToSlide((tCurrent+1)%tTotal);},5000);
+}
+function nextSlide(){goToSlide((tCurrent+1)%tTotal);}
+function prevSlide(){goToSlide((tCurrent-1+tTotal)%tTotal);}
+
+document.addEventListener('DOMContentLoaded',function(){
+  initFadeUps();
+  hsTimer=setInterval(function(){hsGoTo((hsCurrent+1)%hsTotal);},5000);
+  // Init testimonial peek carousel after layout settles
+  setTimeout(function(){goToSlide(0);tTimer=setInterval(function(){goToSlide((tCurrent+1)%tTotal);},5000);},100);
+});
+</script>
+</body>
+</html>
