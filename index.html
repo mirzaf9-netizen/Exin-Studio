@@ -292,9 +292,9 @@ nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border
 
 /* COMPARISON */
 .comparison-table{width:100%;border-collapse:separate;border-spacing:0;margin-top:60px;border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);}
-.comparison-table th{padding:22px 28px;text-align:left;font-size:0.9rem;font-weight:700;background:var(--bg-soft);border-bottom:2px solid var(--border);}
+.comparison-table th{padding:22px 28px;text-align:left;font-size:1.04rem;font-weight:700;background:var(--bg-soft);border-bottom:2px solid var(--border);}
 .comparison-table th.hl{background:var(--gradient);color:white;}
-.comparison-table td{padding:18px 28px;font-size:0.92rem;border-bottom:1px solid var(--border);color:var(--text-secondary);background:white;}
+.comparison-table td{padding:18px 28px;font-size:1.06rem;border-bottom:1px solid var(--border);color:var(--text-secondary);background:white;}
 .comparison-table td.hl{background:rgba(91,60,245,0.04);font-weight:600;color:var(--text-primary);}
 .comparison-table tr:last-child td{border-bottom:none;}
 .chk{color:var(--accent);font-weight:700;}
@@ -433,48 +433,229 @@ footer{background:#07071A;padding:80px 0 40px;}
 @media(max-width:768px){
   .container{padding:0 16px;}
   .section{padding:80px 0;}
+
+  /* HERO — full fix */
+  .hero{overflow:hidden;width:100%;}
+  .hero-inner{width:100%;padding:0;}
+  .hero h1{white-space:normal;font-size:2.2rem;max-width:100%;padding:0 8px;}
+  .hero-sub{font-size:0.95rem;padding:0 8px;max-width:100%;}
+  .hero-badge{max-width:calc(100% - 32px);overflow:hidden;}
+  .hero-badge span{font-size:0.72rem;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .hero-actions{flex-direction:column;align-items:center;gap:12px;width:100%;}
+  .hero-actions .btn{width:100%;max-width:320px;justify-content:center;}
+  .hero-trust{gap:12px;padding:0 8px;}
+  .hero-trust-item{font-size:0.78rem;}
+  .hero-showcase{border-radius:var(--radius-lg);width:100%;}
+
+  /* STATS — 2 columns */
   .stats-inner{grid-template-columns:repeat(2,1fr);}
   .stat-item:nth-child(2){border-right:none;}
   .stat-item:nth-child(3){border-right:1px solid var(--border);}
   .stat-item:nth-child(4){border-right:none;}
+  .stat-item:nth-child(5){border-right:1px solid var(--border);}
+  .stat-item:nth-child(6){border-right:none;}
+  .stat-item{padding:28px 12px;}
+
+  /* PAIN */
   .pain-grid{grid-template-columns:1fr;}
   .pain-card:first-child{border-radius:var(--radius-lg) var(--radius-lg) 0 0;}
   .pain-card:last-child{border-radius:0 0 var(--radius-lg) var(--radius-lg);}
+  .pain-cta{padding:44px 24px;}
+
+  /* COMPARISON TABLE — stack as cards */
+  .comparison-table thead{display:none;}
+  .comparison-table tbody{display:flex;flex-direction:column;gap:0;}
+  .comparison-table tr{display:grid;grid-template-columns:1fr 1fr;border-bottom:1px solid var(--border);}
+  .comparison-table tr:last-child{border-bottom:none;}
+  .comparison-table td{padding:14px 16px;font-size:0.85rem;border-bottom:none;}
+  .comparison-table td:first-child{font-weight:600;color:var(--text-primary);background:var(--bg-soft);font-size:0.82rem;}
+  .comparison-table td.hl{background:rgba(91,60,245,0.04);}
+  .comparison-table td:nth-child(3),.comparison-table td:nth-child(4){display:none;}
+
+  /* OTHER */
   .benefits-grid{grid-template-columns:1fr;}
   .footer-grid{grid-template-columns:1fr;}
   .svcs-grid{grid-template-columns:1fr;}
   .nav-links{display:none;}
   .hamburger{display:flex;}
-  .pain-cta{padding:44px 28px;}
   .form-row{grid-template-columns:1fr;}
-  .tcarousel-slide{padding:0 8px;}
-  .tcarousel-card{padding:36px 28px;}
-  .hero h1{white-space:normal;font-size:2.4rem;}
+  .tcarousel-slide{min-width:82%;padding:0 8px;}
+  .tcarousel-card{padding:32px 24px;}
+  .tcarousel-fade-left,.tcarousel-fade-right{width:40px;}
+  .footer-cta h2{font-size:1.8rem;}
+  .page-hero{padding:140px 0 60px;}
+  .about-grid{grid-template-columns:1fr;}
+  .contact-grid{grid-template-columns:1fr;}
+  .process-steps{grid-template-columns:repeat(2,1fr);}
+  .work-grid{grid-template-columns:1fr;}
+  .trusted-wrap{grid-template-columns:1fr;}
+  .how-wrap{grid-template-columns:1fr;}
+  .how-visual{position:static;}
+  .services-header{grid-template-columns:1fr;gap:24px;}
+  .tab-content.active{grid-template-columns:1fr;}
 }
 
-/* ── MOBILE OVERFLOW FIX ── */
-*{max-width:100%;}
-img,svg,video{max-width:100%;height:auto;}
-.hero-sub{font-size:1rem;padding:0 8px;}
-.hero-actions{flex-direction:column;align-items:center;gap:12px;}
-.hero-actions .btn{width:100%;max-width:320px;justify-content:center;}
-.hero-trust-item{font-size:0.8rem;}
-.hero-badge span{font-size:0.75rem;}
-@media(max-width:480px){
-  h1{font-size:2rem!important;}
-  h2{font-size:1.6rem!important;}
-  .hero{padding:120px 0 60px;}
-  .hero-showcase{border-radius:var(--radius-lg);}
-  .hss-content{padding:24px 20px;}
-  .stat-item{padding:28px 12px;}
-  .stat-num{font-size:1.8rem;}
-  .stat-label{font-size:0.75rem;}
-  .pain-cta{padding:36px 20px;}
-  .pain-cta h2{font-size:1.5rem!important;}
-  .tcarousel-card{padding:28px 20px;}
-  .footer-cta{padding:80px 0;}
-  .footer-cta h2{font-size:1.6rem!important;}
-  .btn-lg{padding:15px 24px;font-size:0.9rem;}
+
+
+/* ══════════════════════════════════
+   NUCLEAR MOBILE FIX — final pass
+   ══════════════════════════════════ */
+
+/* Force no overflow on everything */
+html { overflow-x: hidden !important; }
+body { overflow-x: hidden !important; width: 100% !important; }
+
+@media (max-width: 768px) {
+
+  /* Hero text — force wrap, no overflow */
+  .hero { padding: 100px 0 48px !important; overflow: hidden !important; }
+  .hero .container { overflow: hidden !important; }
+  .hero-inner { width: 100% !important; overflow: hidden !important; }
+  .hero h1 {
+    font-size: 1.95rem !important;
+    white-space: normal !important;
+    word-break: break-word !important;
+    overflow-wrap: break-word !important;
+    max-width: 100% !important;
+    padding: 0 !important;
+  }
+  .hero-sub {
+    font-size: 0.9rem !important;
+    max-width: 100% !important;
+    word-break: break-word !important;
+    padding: 0 !important;
+  }
+  .hero-badge {
+    max-width: calc(100vw - 48px) !important;
+    overflow: hidden !important;
+  }
+  .hero-badge span {
+    overflow: hidden !important;
+    text-overflow: ellipsis !important;
+    white-space: nowrap !important;
+    max-width: 220px !important;
+    display: inline-block !important;
+  }
+
+  /* Hero actions — stack vertically */
+  .hero-actions {
+    flex-direction: column !important;
+    width: 100% !important;
+    padding: 0 !important;
+    gap: 10px !important;
+  }
+  .hero-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+    max-width: 100% !important;
+  }
+
+  /* Hero trust — wrap tightly */
+  .hero-trust {
+    gap: 8px !important;
+    flex-wrap: wrap !important;
+  }
+  .hero-trust-item { font-size: 0.75rem !important; }
+
+  /* Hero showcase — constrain fully */
+  .hero-showcase {
+    width: calc(100vw - 32px) !important;
+    max-width: calc(100vw - 32px) !important;
+    margin-left: 0 !important;
+    margin-right: 0 !important;
+    overflow: hidden !important;
+    border-radius: 12px !important;
+  }
+  .hero-showcase-track-wrap { overflow: hidden !important; }
+  .hero-showcase-track { overflow: hidden !important; }
+  .hero-showcase-slide { min-width: 100% !important; overflow: hidden !important; }
+  .hss-content {
+    display: block !important;
+    padding: 20px 16px !important;
+    overflow: hidden !important;
+  }
+  .hss-left { width: 100% !important; overflow: hidden !important; }
+  .hss-right { display: none !important; }
+  .hss-title {
+    font-size: 1.2rem !important;
+    word-break: break-word !important;
+  }
+  .hss-desc {
+    font-size: 0.85rem !important;
+    word-break: break-word !important;
+  }
+  .hss-tags { flex-wrap: wrap !important; }
+  .hss-tag { font-size: 0.68rem !important; }
+  .hero-showcase-tabs { display: none !important; }
+  .hss-nav { padding: 12px 16px !important; }
+
+  /* Stats — 2 col clean */
+  .stats-inner {
+    grid-template-columns: 1fr 1fr !important;
+    width: 100% !important;
+  }
+  .stat-item { padding: 24px 8px !important; }
+  .stat-num { font-size: 1.7rem !important; }
+  .stat-label { font-size: 0.72rem !important; }
+
+  /* Strip — hide on mobile to prevent overflow */
+  .strip { display: none !important; }
+
+  /* Comparison table — completely replace with stacked cards */
+  .comparison-mobile-header { display: none !important; }
+  .comparison-table { display: block !important; width: 100% !important; overflow: hidden !important; }
+  .comparison-table thead { display: none !important; }
+  .comparison-table tbody { display: block !important; width: 100% !important; }
+  .comparison-table tr {
+    display: grid !important;
+    grid-template-columns: 1fr 1fr !important;
+    width: 100% !important;
+    border-bottom: 1px solid #EBEBF5 !important;
+  }
+  .comparison-table td {
+    display: block !important;
+    padding: 12px 14px !important;
+    font-size: 0.82rem !important;
+    width: auto !important;
+    border: none !important;
+    word-break: break-word !important;
+  }
+  .comparison-table td:first-child {
+    font-weight: 700 !important;
+    background: #F8F7FF !important;
+    font-size: 0.78rem !important;
+    color: #0D0D1A !important;
+    border-right: 1px solid #EBEBF5 !important;
+  }
+  /* Hide 3rd and 4th columns (Freelancer & Agency) on mobile — show only feature + Exin Studio */
+  .comparison-table td:nth-child(3),
+  .comparison-table td:nth-child(4) { display: none !important; }
+  .comparison-table tr:last-child { border-bottom: none !important; }
+
+  /* All containers — prevent overflow */
+  .container { padding: 0 16px !important; overflow: hidden !important; }
+  .section { overflow: hidden !important; }
+
+  /* Footer CTA buttons */
+  .footer-cta-btns {
+    flex-direction: column !important;
+    padding: 0 16px !important;
+    gap: 10px !important;
+  }
+  .footer-cta-btns .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
+
+  /* Pain CTA */
+  .pain-cta-actions {
+    flex-direction: column !important;
+    gap: 10px !important;
+  }
+  .pain-cta-actions .btn {
+    width: 100% !important;
+    justify-content: center !important;
+  }
 }
 
 </style>
@@ -991,6 +1172,11 @@ img,svg,video{max-width:100%;height:auto;}
   <div class="container">
     <div class="label">The difference</div>
     <h2>What makes Exin Studio different.</h2>
+    <div class="comparison-mobile-header">
+      <div>Feature</div>
+      <div>Exin Studio</div>
+      <div>Freelancer</div>
+    </div>
     <table class="comparison-table">
       <thead><tr><th></th><th class="hl">Exin Studio</th><th>Freelancer</th><th>Design Agency</th></tr></thead>
       <tbody>
