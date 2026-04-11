@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<title>Exin Studio — Design that makes complex content clear</title>
+<title>ExIn Studio — Design that makes complex content clear</title>
 <meta name="description" content="A long-term design partner for teams with complex, high-volume content needs. Presentations, reports, and everything in between.">
 <link rel="canonical" href="https://exinstudio.com">
 <style>
@@ -81,7 +81,7 @@ h1+p{margin-top:28px;}
 
 /* NAV */
 nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 0;transition:var(--transition);}
-nav.scrolled{background:rgba(255,255,255,0.92);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 0;}
+nav.scrolled{background:rgba(255,255,255,0.85);backdrop-filter:blur(20px);border-bottom:1px solid var(--border);padding:14px 0;}
 .nav-inner{display:flex;align-items:center;justify-content:space-between;}
 .nav-logo{font-size:1.25rem;font-weight:800;letter-spacing:-0.04em;color:var(--text-primary);}
 .nav-logo span{background:var(--gradient);-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
@@ -567,7 +567,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
     border-radius: 12px !important;
   }
   .hero-showcase-track-wrap { overflow: hidden !important; }
-  .hero-showcase-track { overflow: hidden !important; }
+  .hero-showcase-track { overflow: visible !important; }
   .hero-showcase-slide { min-width: 100% !important; overflow: hidden !important; }
   .hss-content {
     display: block !important;
@@ -576,11 +576,14 @@ body { overflow-x: hidden !important; width: 100% !important; }
   }
   .hss-left { width: 100% !important; overflow: hidden !important; }
   .hss-right { display: none !important; }
+  .hss-category { display: block !important; }
   .hss-title {
+    display: block !important;
     font-size: 1.2rem !important;
     word-break: break-word !important;
   }
   .hss-desc {
+    display: block !important;
     font-size: 0.85rem !important;
     word-break: break-word !important;
   }
@@ -627,7 +630,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
     color: #0D0D1A !important;
     border-right: 1px solid #EBEBF5 !important;
   }
-  /* Hide 3rd and 4th columns (Freelancer & Agency) on mobile — show only feature + Exin Studio */
+  /* Hide 3rd and 4th columns (Freelancer & Agency) on mobile — show only feature + ExIn Studio */
   .comparison-table td:nth-child(3),
   .comparison-table td:nth-child(4) { display: none !important; }
   .comparison-table tr:last-child { border-bottom: none !important; }
@@ -666,7 +669,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
 <nav id="nav">
   <div class="container">
     <div class="nav-inner">
-      <a href="#" class="nav-logo" onclick="showPage('home')">Exin<span>Studio</span></a>
+      <a href="#" class="nav-logo" onclick="showPage('home')">ExIn<span>Studio</span></a>
       <ul class="nav-links">
         <li><a href="#" onclick="showPage('home')">Home</a></li>
         <li><a href="#" onclick="showPage('work')">Work</a></li>
@@ -957,7 +960,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
       </div>
     </div>
     <div class="pain-cta">
-      <h2>This is where Exin Studio comes in.</h2>
+      <h2>This is where ExIn Studio comes in.</h2>
       <p>We embed deeply into your content workflow &mdash; learning your brand, your audience, and your standards &mdash; so every deliverable looks like it was made by someone who actually cares.</p>
       <div class="pain-cta-actions">
         <a href="#" class="btn btn-white btn-lg" onclick="showPage('contact')">Let&apos;s work together <svg viewBox="0 0 16 16" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 8h10M9 4l4 4-4 4"/></svg></a>
@@ -1082,7 +1085,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
 <!-- BENEFITS -->
 <section class="section">
   <div class="container">
-    <div class="label">Why Exin Studio</div>
+    <div class="label">Why ExIn Studio</div>
     <h2>The design partner you&apos;ve been looking for.</h2>
     <div class="benefits-grid">
       <div class="benefit-card fade-up"><div class="benefit-icon">&#10022;</div><h3>Senior craft, every time</h3><p>Every deliverable is handled by a senior designer with 4+ years of focused experience in presentation and editorial design.</p></div>
@@ -1111,7 +1114,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
         <div class="tcarousel-slide active">
           <div class="tcarousel-card">
             <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="tcarousel-quote">&ldquo;Working with Exin Studio has transformed how we present our content. The consistency, speed, and quality across thousands of deliverables is something we haven&apos;t found anywhere else. They feel like part of our team.&rdquo;</div>
+            <div class="tcarousel-quote">&ldquo;Working with ExIn Studio has transformed how we present our content. The consistency, speed, and quality across thousands of deliverables is something we haven&apos;t found anywhere else. They feel like part of our team.&rdquo;</div>
             <div class="tcarousel-author">
               <div class="tcarousel-avatar" style="background:linear-gradient(135deg,#5B3CF5,#9B59F5);">H</div>
               <div><div class="tcarousel-name">Head of Content</div><div class="tcarousel-role">European Medical E-Learning Platform</div><div class="tcarousel-badge">3+ year partnership</div></div>
@@ -1133,7 +1136,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
         <div class="tcarousel-slide">
           <div class="tcarousel-card">
             <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="tcarousel-quote">&ldquo;Our research whitepaper needed to speak to both policymakers and practitioners. Exin Studio understood this immediately &mdash; the typography, structure, and data visualizations were all perfectly calibrated for our audience.&rdquo;</div>
+            <div class="tcarousel-quote">&ldquo;Our research whitepaper needed to speak to both policymakers and practitioners. ExIn Studio understood this immediately &mdash; the typography, structure, and data visualizations were all perfectly calibrated for our audience.&rdquo;</div>
             <div class="tcarousel-author">
               <div class="tcarousel-avatar" style="background:linear-gradient(135deg,#16A34A,#059669);">R</div>
               <div><div class="tcarousel-name">Research Director</div><div class="tcarousel-role">Global Development Organization</div><div class="tcarousel-badge">Whitepaper series</div></div>
@@ -1144,7 +1147,7 @@ body { overflow-x: hidden !important; width: 100% !important; }
         <div class="tcarousel-slide">
           <div class="tcarousel-card">
             <div class="testimonial-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-            <div class="tcarousel-quote">&ldquo;Our annual report used to take months and three rounds of agency revisions. With Exin Studio, we had a publication-quality report in days. Complex data made genuinely readable &mdash; the data visualization work alone was worth it.&rdquo;</div>
+            <div class="tcarousel-quote">&ldquo;Our annual report used to take months and three rounds of agency revisions. With ExIn Studio, we had a publication-quality report in days. Complex data made genuinely readable &mdash; the data visualization work alone was worth it.&rdquo;</div>
             <div class="tcarousel-author">
               <div class="tcarousel-avatar" style="background:linear-gradient(135deg,#F59E0B,#EF4444);">S</div>
               <div><div class="tcarousel-name">Communications Lead</div><div class="tcarousel-role">European NGO Network</div><div class="tcarousel-badge">Annual report design</div></div>
@@ -1171,14 +1174,14 @@ body { overflow-x: hidden !important; width: 100% !important; }
 <section class="section">
   <div class="container">
     <div class="label">The difference</div>
-    <h2>What makes Exin Studio different.</h2>
+    <h2>What makes ExIn Studio different.</h2>
     <div class="comparison-mobile-header">
       <div>Feature</div>
-      <div>Exin Studio</div>
+      <div>ExIn Studio</div>
       <div>Freelancer</div>
     </div>
     <table class="comparison-table">
-      <thead><tr><th></th><th class="hl">Exin Studio</th><th>Freelancer</th><th>Design Agency</th></tr></thead>
+      <thead><tr><th></th><th class="hl">ExIn Studio</th><th>Freelancer</th><th>Design Agency</th></tr></thead>
       <tbody>
         <tr><td>Turnaround</td><td class="hl"><span class="chk">24 hours</span></td><td>1&ndash;2 weeks</td><td>2&ndash;4 weeks</td></tr>
         <tr><td>Revision policy</td><td class="hl"><span class="chk">Unlimited</span></td><td>Limited</td><td>Charged extra</td></tr>
@@ -1300,39 +1303,70 @@ body { overflow-x: hidden !important; width: 100% !important; }
   <div class="container" style="position:relative;z-index:1;">
     <div class="label">About</div>
     <h1>Design as a <span class="grad">long-term practice.</span></h1>
-    <p style="max-width:600px;margin-top:20px;">Exin Studio was built around a simple belief: the best design work happens when a designer truly understands your content, your audience, and your standards &mdash; and that understanding only comes with time.</p>
   </div>
 </section>
-<section class="section" style="padding-top:0;">
+
+<!-- SECTION 1: The Name -->
+<section class="section" style="padding-top:0;border-bottom:1px solid var(--border);">
+  <div class="container" style="max-width:760px;">
+    <h2 style="margin-bottom:28px;">ExIn &mdash; External forces. Internal results.</h2>
+    <p style="margin-bottom:22px;">ExIn is short for Extrovert and Introvert &mdash; a name that reflects who we design for. Every organization has content that speaks outward: to clients, funders, and the world. And every organization has content that drives things inward: training, alignment, and standards that shape how teams work.</p>
+    <p style="margin-bottom:0;">We use external design forces &mdash; structure, visual hierarchy, typography &mdash; to create internal results: clarity, consistency, and confidence in your content. That&apos;s what ExIn means. That&apos;s what we do.</p>
+  </div>
+</section>
+
+<!-- SECTION 2: Stats row -->
+<section class="section-sm" style="border-bottom:1px solid var(--border);">
   <div class="container">
-    <div class="about-grid">
-      <div class="about-sticky">
-        <div class="about-card">
-          <h3>By the numbers.</h3>
-          <div class="about-stat-r"><div><div class="about-stat-num">4+</div><div class="about-stat-lbl">Years focused experience</div></div></div>
-          <div class="about-stat-r"><div><div class="about-stat-num">10,000+</div><div class="about-stat-lbl">Slides delivered</div></div></div>
-          <div class="about-stat-r"><div><div class="about-stat-num">100+</div><div class="about-stat-lbl">Reports &amp; publications</div></div></div>
-          <div class="about-stat-r"><div><div class="about-stat-num">3+</div><div class="about-stat-lbl">Year longest partnership</div></div></div>
-        </div>
-      </div>
-      <div class="about-content">
-        <h2>A specialist studio for organizations with real content challenges.</h2>
-        <p>Exin Studio is a presentation and editorial design studio founded on the belief that great design is the result of deep familiarity &mdash; with a client&apos;s brand, their audience, and the content itself.</p>
-        <p>We specialize in high-volume, high-stakes design for organizations that can&apos;t afford inconsistency. E-learning platforms with hundreds of course modules. Consulting firms with weekly client decks. NGOs with annual reports that need to move people.</p>
-        <p>Our longest client partnerships run three years and counting. That&apos;s not a coincidence &mdash; it&apos;s the model. We invest in understanding your content deeply, so every project benefits from that accumulated knowledge.</p>
-        <p style="margin-bottom:0;">Working globally.</p>
-        <div style="margin-top:48px;">
-          <div style="font-weight:700;font-size:0.95rem;margin-bottom:20px;">Core expertise</div>
-          <div class="exp-item"><span class="exp-name">Presentation Design</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:98%;"></div></div></div>
-          <div class="exp-item"><span class="exp-name">Editorial &amp; Publication Design</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:90%;"></div></div></div>
-          <div class="exp-item"><span class="exp-name">Typography &amp; Layout</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:95%;"></div></div></div>
-          <div class="exp-item"><span class="exp-name">Data Visualization</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:85%;"></div></div></div>
-          <div class="exp-item"><span class="exp-name">Brand Systems</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:80%;"></div></div></div>
-        </div>
-      </div>
+    <div style="display:grid;grid-template-columns:repeat(4,1fr);gap:2px;border-radius:var(--radius-lg);overflow:hidden;">
+      <div class="stat-item fade-up" style="border-right:1px solid var(--border);"><div class="stat-num">4+</div><div class="stat-label">Years experience</div></div>
+      <div class="stat-item fade-up" style="border-right:1px solid var(--border);"><div class="stat-num">10k+</div><div class="stat-label">Slides delivered</div></div>
+      <div class="stat-item fade-up" style="border-right:1px solid var(--border);"><div class="stat-num">100+</div><div class="stat-label">Reports &amp; publications</div></div>
+      <div class="stat-item fade-up"><div class="stat-num">3+</div><div class="stat-label">Year partnerships</div></div>
     </div>
   </div>
 </section>
+
+<!-- SECTION 3: The Studio -->
+<section class="section" style="border-bottom:1px solid var(--border);">
+  <div class="container" style="max-width:760px;">
+    <h2 style="margin-bottom:28px;">Built for organizations with real content challenges.</h2>
+    <p style="margin-bottom:22px;">ExIn Studio is a presentation and editorial design studio founded on the belief that great design is the result of deep familiarity &mdash; with a client&apos;s brand, their audience, and the content itself.</p>
+    <p style="margin-bottom:22px;">We specialize in high-volume, high-stakes design for organizations that can&apos;t afford inconsistency. E-learning platforms with hundreds of course modules. Consulting firms with weekly client decks. NGOs with annual reports that need to move people.</p>
+    <p style="margin-bottom:22px;">Our longest client partnerships run three years and counting. That&apos;s not a coincidence &mdash; it&apos;s the model. We invest in understanding your content deeply, so every project benefits from that accumulated knowledge.</p>
+    <p style="margin-bottom:0;">Working globally.</p>
+  </div>
+</section>
+
+<!-- SECTION 4: Values grid -->
+<section class="section" style="background:var(--bg-soft);border-top:1px solid var(--border);border-bottom:1px solid var(--border);">
+  <div class="container">
+    <div class="label">How we work</div>
+    <h2 style="margin-bottom:48px;">What we believe in.</h2>
+    <div class="benefits-grid">
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#9670;</div><h3>Clarity above all</h3><p>Every design decision is measured against one question: does this make the content clearer? If not, it doesn&apos;t belong.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#9201;</div><h3>Respect for deadlines</h3><p>A deliverable that arrives late isn&apos;t excellent &mdash; it&apos;s a problem. We treat your deadline as a hard constraint, not a target.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#9883;</div><h3>Long-term thinking</h3><p>The best design partnerships compound over time. We invest in understanding your content so every project is better than the last.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#65332;</div><h3>Typography as foundation</h3><p>Type sets the tone before a word is read. We treat typographic decisions as structural, not decorative.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#129309;</div><h3>Partnership, not transactions</h3><p>We&apos;re not a task queue. We embed into your workflow, learn your standards, and function as an extension of your team.</p></div>
+      <div class="benefit-card fade-up"><div class="benefit-icon">&#10003;</div><h3>No surprises</h3><p>Clear timelines, transparent pricing, and honest communication. You always know where the work stands.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- SECTION 5: Expertise bars -->
+<section class="section">
+  <div class="container" style="max-width:760px;">
+    <div class="label">Core expertise</div>
+    <h2 style="margin-bottom:48px;">What we&apos;re best at.</h2>
+    <div class="exp-item"><span class="exp-name">Presentation Design</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:98%;"></div></div></div>
+    <div class="exp-item"><span class="exp-name">Editorial &amp; Publication Design</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:90%;"></div></div></div>
+    <div class="exp-item"><span class="exp-name">Typography &amp; Layout</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:95%;"></div></div></div>
+    <div class="exp-item"><span class="exp-name">Data Visualization</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:85%;"></div></div></div>
+    <div class="exp-item"><span class="exp-name">Brand Systems</span><div class="exp-bar-wrap"><div class="exp-bar" style="width:80%;"></div></div></div>
+  </div>
+</section>
+
 <section class="footer-cta"><div class="container"><h2>Let&apos;s build something that lasts.</h2><p>We&apos;re always open to conversations with organizations that take their content seriously.</p><div class="footer-cta-btns"><a href="#" class="btn btn-white btn-lg" onclick="showPage('contact')">Get in touch</a><a href="#" class="btn btn-ghost btn-lg" onclick="showPage('work')">See our work</a></div></div></section>
 </div>
 
@@ -1386,12 +1420,12 @@ body { overflow-x: hidden !important; width: 100% !important; }
 <footer>
   <div class="container">
     <div class="footer-grid">
-      <div class="footer-brand"><a href="#" class="footer-logo" onclick="showPage('home')">Exin<span>Studio</span></a><p>A long-term design partner for teams with complex, high-volume content needs. Presentations, reports, and everything in between.</p></div>
+      <div class="footer-brand"><a href="#" class="footer-logo" onclick="showPage('home')">ExIn<span>Studio</span></a><p>A long-term design partner for teams with complex, high-volume content needs. Presentations, reports, and everything in between.</p></div>
       <div class="footer-col"><h5>Studio</h5><ul><li><a href="#" onclick="showPage('work')">Work</a></li><li><a href="#" onclick="showPage('services')">Services</a></li><li><a href="#" onclick="showPage('about')">About</a></li><li><a href="#" onclick="showPage('contact')">Contact</a></li></ul></div>
       <div class="footer-col"><h5>Services</h5><ul><li><a href="#" onclick="showPage('services')">Presentation Design</a></li><li><a href="#" onclick="showPage('services')">Editorial Design</a></li><li><a href="#" onclick="showPage('services')">E-Learning</a></li><li><a href="#" onclick="showPage('services')">Reports &amp; Publications</a></li></ul></div>
       <div class="footer-col"><h5>Contact</h5><ul><li><a href="mailto:hello@exinstudio.com">hello@exinstudio.com</a></li><li><a href="mailto:hello@exinstudio.com">hello@exinstudio.com</a></li><li><a href="https://linkedin.com" target="_blank">LinkedIn</a></li><li><a href="https://upwork.com" target="_blank">Upwork</a></li></ul></div>
     </div>
-    <div class="footer-bottom"><p>&copy; 2025 Exin Studio. All rights reserved.</p><a href="mailto:hello@exinstudio.com" class="footer-email">hello@exinstudio.com</a></div>
+    <div class="footer-bottom"><p>&copy; 2025 ExIn Studio. All rights reserved.</p><a href="mailto:hello@exinstudio.com" class="footer-email">hello@exinstudio.com</a></div>
   </div>
 </footer>
 
